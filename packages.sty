@@ -1,0 +1,101 @@
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc} % in the output file, allow accented words to
+                         % be (1) automatically hyphenated; (2) copyable
+                         % to the clipboard; (3) searchable. (Even in
+                         % English, e.g., Gödel)
+
+\usepackage{microtype}
+
+\usepackage{amssymb}
+\usepackage{bbm}                % for blackboard 1, i.e., \mathbbm{1}
+
+\usepackage[letterpaper,hmargin=1in,vmargin=1in]{geometry}
+\usepackage{mathtools}          % already includes amsmath
+\usepackage{mathrsfs}           % for \mathscr
+\usepackage{enumerate}
+\usepackage{suffix}
+
+\usepackage{booktabs}
+\usepackage{ifdraft}
+\usepackage{color}
+
+\usepackage{xcolor}
+\usepackage[mark]{gitinfo2}
+\renewcommand{\gitMark}{\gitAbbrevHash{} \textbullet{} \gitAuthorName{} \textbullet{} \gitAuthorIsoDate}
+
+\usepackage[hyperref=true,%
+            backend=biber,%
+            language=english,%
+            doi=false,%
+            url=true,%
+            isbn=false,%
+            giveninits=true,%
+            urldate=short,%
+            sortcites=true,%
+            style=numeric,%
+            maxcitenames=5,%
+            maxbibnames=1000,%
+            arxiv=abs,%
+            related=true,%
+            backref=true,%
+            abbreviate=false,%
+            dateabbrev=false]{biblatex}
+\addbibresource{main.bib}
+
+\makeatletter
+\def\@setdate{\datename\ \@date}
+\def\@setaddresses{\vfill\par
+  \nobreak \begingroup
+\footnotesize
+  \def\author##1{\nobreak\addvspace\bigskipamount}%
+  \def\\{\unskip, \ignorespaces}%
+  \interlinepenalty\@M
+  \def\address##1##2{\begingroup
+    \par\addvspace\bigskipamount\noindent
+    \@ifnotempty{##1}{(\ignorespaces##1\unskip) }%
+    {\scshape\ignorespaces##2}\par\endgroup}%
+  \def\curraddr##1##2{\begingroup
+    \@ifnotempty{##2}{\nobreak\noindent{\itshape Address}%
+      \@ifnotempty{##1}{, \ignorespaces##1\unskip}\/:\space
+      ##2\par}\endgroup}%
+  \def\email##1##2{\begingroup
+    \@ifnotempty{##2}{\nobreak\noindent{\itshape E-mail address}%
+      \@ifnotempty{##1}{, \ignorespaces##1\unskip}\/:\space
+      \ttfamily##2\par}\endgroup}%
+  \def\urladdr##1##2{\begingroup
+    \@ifnotempty{##2}{\nobreak\indent{\itshape URL}%
+      \@ifnotempty{##1}{, \ignorespaces##1\unskip}\/:\space
+      \ttfamily##2\par}\endgroup}%
+  \addresses
+  \endgroup
+}
+\makeatother
+
+\usepackage{ifpdf}
+\ifpdf
+\usepackage[pdftex,%
+            pdfusetitle,%
+            pdfauthor={Marcel K. de Carli Silva and co-authors},% FIXME
+            colorlinks=true,%
+            \ifoptionfinal{%
+              linkcolor=black,%
+              citecolor=black,%
+              urlcolor=black,%
+            }{}%
+            hypertexnames=true,%
+            bookmarks=true,%
+           ]{hyperref}
+\else
+\fi
+\usepackage{cleveref}
+
+\usepackage{theorems}
+\usepackage{decorated}
+\usepackage{notation}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "main"
+%%% coding: utf-8
+%%% sentence-end-double-space: t
+%%% End:
