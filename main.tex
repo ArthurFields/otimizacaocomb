@@ -22,9 +22,153 @@
 
 \tableofcontents
 
+\setcounter{section}{3}
 
+\section*{Lecture 3, Tuesday, August 14}
 
-\nocite{CookCPS98a}
+To solve an optimization problem means to determine whether it is
+\begin{enumerate}[(i)]
+\item infeasible, or
+\item unbounded, or
+\item determine the optimal value and find an optimal solution, if one
+  exists.
+\end{enumerate}
+
+\begin{problem}[The Shortest Paths Problem]
+  Given a digraph \(D = (V,A,\varphi)\), vertices \(r,s \in V\), and
+  \(\ell \colon A \to \Reals\), solve the optimization problem
+  \begin{equation}
+    \label{eq:1}
+    \tag{SPP}
+    \begin{array}{{rl}}
+      \text{Minimize}   & \ell(P) \\
+      \text{subject to} & \text{\(P\) is a path from \(r\) to \(s\) in~\(D\)}.
+    \end{array}
+  \end{equation}
+\end{problem}
+
+\begin{problem}[The Shortest Walks Problem]
+  Given a digraph \(D = (V,A,\varphi)\), vertices \(r,s \in V\), and
+  \(\ell \colon A \to \Reals\), solve the optimization problem
+  \begin{equation}
+    \label{eq:2}
+    \tag{SWP}
+    \begin{array}{{rl}}
+      \text{Minimize}   & \ell(P) \\
+      \text{subject to} & \text{\(P\) is a path from \(r\) to \(s\) in~\(D\)}.
+    \end{array}
+  \end{equation}
+\end{problem}
+
+It is obvious how to reduce any instance of either problem to one
+where the digraph is simple.
+
+\begin{proposition}
+  Let \(D = (V,A,\varphi)\) be a digraph, let \(r,s \in V\), and let
+  \(\ell \colon A \to \Reals\).  Then any optimal solution
+  to~\eqref{eq:2} of minimum length is a path, and hence an optimal
+  solution to~\eqref{eq:1}.
+\end{proposition}
+
+Let \(D = (V,A)\) be a digraph, let \(r,s \in V\), and let
+\(\ell \colon A \to \Reals\).  For each \(t \in \Naturals\), define
+\(y_t \colon V \to \Reals \cup \set{\infty}\) as
+\begin{equation}
+  \label{eq:3}
+  y_0(v)
+  \coloneqq
+  \begin{cases*}
+    0       & if \(v = r\); \\
+    +\infty & otherwise,    \\
+  \end{cases*}
+\end{equation}
+and
+\begin{equation}
+  \label{eq:4}
+  y_{t+1}(v)
+  \coloneqq
+  \min\paren[\big]{
+    \set{y_t(v)}
+    \cup
+    \setst{
+      y_t(u) + \ell(uv)
+    }{
+      uv \in A
+    }}
+  \qquad
+  \forall t \in \Naturals.
+\end{equation}
+
+\begin{exercise}
+  Let \(D = (V,A)\) be a digraph, let \(r \in V\), and let
+  \(\ell \colon A \to \Reals\).  Prove that, for each
+  \(t \in \Naturals\) and each \(v \in V\), the smallest cost of a
+  walk in~\(D\) from~\(r\) to~\(v\) with length \(\leq t\) is
+  \(y_t(v)\).
+\end{exercise}
+
+It is easy to check that \(y_t\) can be computed in polynomial time
+with respect to \(n = \card{V}\) and~\(t\).  A smart way to do this
+computationally uses dynamic programming, and it is not hard to
+recover the optimal walks from the recurrence relations
+in~\eqref{eq:3} and~\eqref{eq:4}.
+
+Let \(D = (V,A)\) be a digraph and let \(\ell \colon A \to \Reals\).
+Let us temporarily call a function
+\(y \colon V \to \Reals \cup \set{\infty}\) a \emph{potential}.  A
+potential is \emph{feasible} if
+\begin{equation*}
+  y(v) \leq y(u) + \ell(uv)
+  \qquad
+  \forall uv \in A.
+\end{equation*}
+If \(y\) is a feasible potential and \(y(r) < \infty\), then
+\(r \reaches_D v \implies y(v) < \infty\).  So there is very little
+loss of generality when assume that a feasible potential is finite
+everywhere.
+
+\begin{theorem}
+  \label{thm:1}
+  Let \(D = (V,A)\) be a digraph, let \(r,s \in V\), and let
+  \(\ell \colon A \to \Reals\).  If \(y \colon V \to \Reals\) is a
+  feasible potential, then
+  \begin{equation}
+    \label{eq:5}
+    \ell(W) \geq y(s) - y(r)
+    \qquad
+    \text{for any walk~\(W\) from~\(r\) to~\(s\) in~\(D\)}.
+  \end{equation}
+\end{theorem}
+\begin{proof}
+  Let \(W = \seq{v_0,a_1,v_1,\dotsc,a_k,v_k}\) be a walk from
+  \(r = v_0\) to \(s = v_k\) in~\(D\).  Then
+  \begin{equation*}
+    \ell(W)
+    =
+    \sum_{i=1}^k \ell(a_i)
+    =
+    \sum_{i=1}^k \ell(v_{i-1}v_i)
+    \geq
+    \sum_{i=1}^k \sqbrac[\big]{y(v_i)-y(v_{i-1})}
+    =
+    y(v_k) - y(v_0)
+    =
+    y(s) - y(r)
+  \end{equation*}
+  since the sum telescopes.
+\end{proof}
+
+\begin{corollary}
+  Let \(D = (V,A)\) be a digraph and let \(\ell \colon A \to \Reals\).
+  If there is a feasible potential \(y \colon V \to \Reals\) then
+  \(D\) has no negative circuits.
+\end{corollary}
+\begin{proof}
+  Let \(C\) be a circuit in~\(D\) from \(r\) to \(s = r\).  Then
+  \(\ell(C) \geq y(s) - y(r) = 0\) by \Cref{thm:1}.
+\end{proof}
+
+\nocite{CookCPS98a,Schrijver03a}
 
 \begingroup
 \printbibliography

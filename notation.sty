@@ -170,6 +170,10 @@
 % \Rationals
 \newcommand*{\Rationals}{\mathbb{Q}}
 
+% reaches
+% r \reaches_D s
+\newcommand*{\reaches}{\rightsquigarrow}
+
 % set of reals
 % \Reals
 \newcommand*{\Reals}{\mathbb{R}}
@@ -182,6 +186,12 @@
 % \sqbrac{x}
 % \sqbrac[\Bigg]{\sum_{i \in I} x_i}
 \newcommand{\sqbrac}[2][]{#1[{#2}#1]}
+
+
+% sequence
+% \seq{v_1,\dotsc,v_n}
+\newcommand\seq[2][]{\anglebrackets[#1]{#2}}
+\WithSuffix\newcommand\seq*[1]{\anglebrackets*{#1}}
 
 % set curly braces
 % \set{1,2,\dotsc,n}
