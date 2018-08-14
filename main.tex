@@ -60,21 +60,146 @@ To solve an optimization problem means to determine whether it is
   \end{equation}
 \end{problem}
 
-It is obvious how to reduce any instance of either problem to one
+\begin{definition}
+  Let \((X,f)\) and \((Y,g)\) be optimization problems.  A
+  \emph{homomorphism} from \((X,f)\) to \((Y,g)\) is a function
+  \(\psi \colon X \to Y\) such that \(g(\psi(x)) \leq f(x)\) for each
+  \(x \in X\).  If there exists a homomorphism from \((X,f)\) to
+  \((Y,g)\), we write \((X,f) \to (Y,g)\).  The problems \((X,f)\) and
+  \((Y,g)\) are \emph{equivalent} if \((X,f) \to (Y,g)\) and
+  \((Y,g) \to (X,f)\).
+\end{definition}
+
+\begin{exercise}
+  \label{ex:1}
+  Prove that either problem \eqref{eq:1} or \eqref{eq:2} is equivalent
+  to the same problem applied to the induced subdigraph \(D[V_{rs}]\)
+  where
+  \(V_{rs} \coloneqq \setst{v \in V}{r \reaches_D v \text{ and }v
+    \reaches_D s}\).
+\end{exercise}
+
+\begin{exercise}
+  Prove that, if two optimization problems are equivalent, they both
+  have one of the possible outcomes: (i) infeasible; (ii) unbounded;
+  (iii) finite optimal value but not optimal solution; (iv) finite
+  optimal value and there exists an optimal solution.
+\end{exercise}
+
+\Cref{ex:1} shows that very little generality is lost in either
+\eqref{eq:1} or \eqref{eq:2} if we assume that,
+\begin{equation}
+  \label{eq:3}
+  \text{for each \(v \in V\), we have \(r \reaches_D v \reaches_D s\).}
+\end{equation}
+It is also obvious how to reduce any instance of either problem to one
 where the digraph is simple.
 
+\begin{exercise}
+  \label{ex:2}
+  Let \(D = (V,A)\) be a digraph, let \(r,s \in V\), and let
+  \(\ell \colon A \to \Reals\).  Prove that, if some optimal solution
+  \(W^\star\) of~\eqref{eq:2} is a path, then \(W^\star\) is an
+  optimal solution of~\eqref{eq:1}.
+\end{exercise}
+
+\begin{exercise}
+  \label{ex:3}
+  Let \(D = (V,A)\) be a digraph, let \(r,s \in V\), and let
+  \(\ell \colon A \to \Reals\).  If
+  \(\seq{v_0,a_1,v_1,\dotsc,a_k,v_k}\) is an optimal solution
+  for~\eqref{eq:2} and \(v_i = v_j\) for some
+  \(i,j \in \set{0,\dotsc,k}\) such that \(i < j\), then
+  \(C \coloneqq \seq{v_i,a_{i+1},v_{i+1},\dotsc,a_j,v_j}\) costs
+  \(\ell(C) \geq 0\).
+\end{exercise}
+
 \begin{proposition}
-  Let \(D = (V,A,\varphi)\) be a digraph, let \(r,s \in V\), and let
+  \label{prop:1}
+  Let \(D = (V,A)\) be a digraph, let \(r,s \in V\), and let
   \(\ell \colon A \to \Reals\).  Then any optimal solution
   to~\eqref{eq:2} of minimum length is a path, and hence an optimal
   solution to~\eqref{eq:1}.
 \end{proposition}
+\begin{proof}
+  Let \(W = \seq{v_0,a_1,v_1,\dotsc,a_k,v_k}\) be an optimal solution
+  for~\eqref{eq:2} with the minimum number of arcs.  If there exist
+  \(i,j \in \set{0,\dotsc,k}\) such that \(v_i = v_j\) and \(i < j\),
+  then
+  \(W' \coloneqq
+  \seq{v_0,a_1,v_1,\dotsc,a_i,v_i,a_{j+1},v_{j+1},\dotsc,a_k,v_k}\) is
+  a walk from~\(r\) to~\(s\) with \(\ell(W') = \ell(W) - \ell(C)\) for
+  \(C \coloneqq \seq{v_i,a_{i+1},v_{i+1},\dotsc,a_j,v_j}\) so
+  \(\ell(W') \leq \ell(W)\) by \Cref{ex:3}.  By optimality,
+  \(\ell(W') = \ell(W)\) and \(W'\) has smaller length than~\(W\), a
+  contradiction.  Hence, \(W\) is a path.  We are done by \Cref{ex:2}.
+\end{proof}
+
+Let \(D = (V,A,\varphi)\) be a digraph.  Define
+\begin{alignat*}{2}
+  \label{eq:8}
+  \deltaout[D](S)
+  & \coloneqq
+  \setst{
+    a \in A
+  }{
+    \varphi(a) = uv,\,
+    u \in S,\,
+    v \not\in S
+  }
+  & \qquad &
+  \forall S \subseteq V,
+  \\
+  \deltain[D](S)
+  & \coloneqq
+  \deltaout[D](V \setminus S)
+  & \qquad &
+  \forall S \subseteq V.
+\end{alignat*}
+Define the binary relation \(\reaches_D\) on~\(V\) by
+\begin{equation*}
+  r \reaches_D s
+  \text{ if there is a walk from~\(r\) to~\(s\) in~\(D\)}.
+\end{equation*}
+
+\begin{theorem}
+  Let \(D = (V,A)\) be a digraph and let \(r,s \in V\).  Then
+  \(r \not\reaches_D s \iff\) there exists \(R \subseteq V\) such that
+  \(r \in R\), \(s \not\in R\) and \(\deltaout[D](R) = \emptyset\).
+\end{theorem}
+\begin{proof}
+  
+\end{proof}
+
+\begin{proposition}
+  \label{prop:2}
+  Let \(D = (V,A)\) be a digraph, let \(r,s \in V\), and let
+  \(\ell \colon A \to \Reals\).  Suppose that~\eqref{eq:3} holds.
+  Then
+  \begin{equation}
+    \label{eq:4}
+    \text{\eqref{eq:2} is unbounded}
+    \iff
+    \text{\(D\) has a negative circuit}.
+  \end{equation}
+\end{proposition}
+\begin{proof}[Proof Sketch]
+  
+\end{proof}
+
+\begin{exercise}
+  \label{ex:4}
+  Let \(D = (V,A)\) be a digraph, let \(r,s \in V\), and let
+  \(\ell \colon A \to \Reals\).  Suppose that~\eqref{eq:3} holds.
+  Prove that, if the optimal value of~\eqref{eq:2} is finite, then
+  there exists an optimal solution.
+\end{exercise}
 
 Let \(D = (V,A)\) be a digraph, let \(r,s \in V\), and let
 \(\ell \colon A \to \Reals\).  For each \(t \in \Naturals\), define
 \(y_t \colon V \to \Reals \cup \set{\infty}\) as
 \begin{equation}
-  \label{eq:3}
+  \label{eq:5}
   y_0(v)
   \coloneqq
   \begin{cases*}
@@ -84,7 +209,7 @@ Let \(D = (V,A)\) be a digraph, let \(r,s \in V\), and let
 \end{equation}
 and
 \begin{equation}
-  \label{eq:4}
+  \label{eq:6}
   y_{t+1}(v)
   \coloneqq
   \min\paren[\big]{
@@ -100,6 +225,7 @@ and
 \end{equation}
 
 \begin{exercise}
+  \label{ex:5}
   Let \(D = (V,A)\) be a digraph, let \(r \in V\), and let
   \(\ell \colon A \to \Reals\).  Prove that, for each
   \(t \in \Naturals\) and each \(v \in V\), the smallest cost of a
@@ -107,11 +233,15 @@ and
   \(y_t(v)\).
 \end{exercise}
 
-It is easy to check that \(y_t\) can be computed in polynomial time
-with respect to \(n = \card{V}\) and~\(t\).  A smart way to do this
-computationally uses dynamic programming, and it is not hard to
-recover the optimal walks from the recurrence relations
-in~\eqref{eq:3} and~\eqref{eq:4}.
+It is easy to check that \(y_t\) can be computed in time polynomial in
+\(n = \card{V}\) and~\(t\).  A smart way to do this computationally
+uses dynamic programming, and it is not hard to recover the optimal
+walks from the recurrence relations in~\eqref{eq:5} and~\eqref{eq:6}.
+Suppose that~\eqref{eq:3} holds.  By~\Cref{prop:1,prop:2,ex:4}, if
+\(D\) has no negative circuits, then
+\(y_{n-1} = \dist_{(G,\ell)}(r,\cdot)\).  How can we detect/certify
+whether \(D\) has negative circuits and certify that the walks that we
+find are optimal?
 
 Let \(D = (V,A)\) be a digraph and let \(\ell \colon A \to \Reals\).
 Let us temporarily call a function
@@ -122,10 +252,10 @@ potential is \emph{feasible} if
   \qquad
   \forall uv \in A.
 \end{equation*}
-If \(y\) is a feasible potential and \(y(r) < \infty\), then
-\(r \reaches_D v \implies y(v) < \infty\).  So there is very little
-loss of generality when assume that a feasible potential is finite
-everywhere.
+If \(y\) is a feasible potential and \(y(r) < \infty\), then for every
+\(v \in V\), we have \(r \reaches_D v \implies y(v) < \infty\).  So
+there is very little loss of generality when assume that a feasible
+potential is finite everywhere.
 
 \begin{theorem}
   \label{thm:1}
@@ -133,7 +263,7 @@ everywhere.
   \(\ell \colon A \to \Reals\).  If \(y \colon V \to \Reals\) is a
   feasible potential, then
   \begin{equation}
-    \label{eq:5}
+    \label{eq:7}
     \ell(W) \geq y(s) - y(r)
     \qquad
     \text{for any walk~\(W\) from~\(r\) to~\(s\) in~\(D\)}.
@@ -167,6 +297,31 @@ everywhere.
   Let \(C\) be a circuit in~\(D\) from \(r\) to \(s = r\).  Then
   \(\ell(C) \geq y(s) - y(r) = 0\) by \Cref{thm:1}.
 \end{proof}
+
+\begin{corollary}
+  \label{cor:1}
+  Let \(D = (V,A)\) be a digraph on \(n\) vertices, let \(r \in V\),
+  and let \(\ell \colon A \to \Reals\).  Suppose that, for each
+  \(v \in V\), we have \(r \reaches_D v\).  If \(D\) has no negative
+  circuit, then \(y_{n-1} = \dist_{(G,\ell)}(r,\cdot)\) is a feasible
+  potential.
+\end{corollary}
+\begin{proof}
+  This is a summary of what was discussed above.  Write the full proof
+  as an exercise.
+\end{proof}
+
+Regarding the functions \(y_t\) defined in~\eqref{eq:5}
+and~\eqref{eq:6}, it is easy to verify that \(y_{t} = y_{t+1}\) if and
+only if \(y_t\) is a feasible potential.  Hence, to detect whether
+\(D\) has a negative circuit, it suffices to check whether
+\(y_{n-1} = y_n\) by \Cref{cor:1}.  To actually find a negative
+circuit, suppose that \(y_n \neq y_{n-1}\).  Since
+\(y_n \leq y_{n-1}\), there exists \(v \in V\) such that
+\(y_n(v) < y_{n-1}(v)\).  By~\Cref{ex:5}, there is a walk~\(W\)
+from~\(r\) to~\(v\) in~\(D\) of length exactly~\(n\) and cost
+\(\ell(W) < \dist_{(G,\ell)}(r,v)\).  Hence, \(W\) must ``contain'' a
+negative circuit.
 
 \nocite{CookCPS98a,Schrijver03a}
 

@@ -52,6 +52,16 @@
 % \curly*{\sum_{i \in I} x_i} uses \left and \right
 \DeclarePairedDelimiter\curly{\{}{\}}
 
+% delta in
+% \deltain(S)
+% \deltain[D](S)
+\newcommand*{\deltain}[1][]{\delta_{#1}^{\scriptscriptstyle \rm\, in}}
+
+% delta out
+% \deltaout(S)
+% \deltaout[D](S)
+\newcommand*{\deltaout}[1][]{\delta_{#1}^{\scriptscriptstyle \rm\, out}}
+
 % diagonal matrix from vector
 % \Diag(X)
 \DeclareMathOperator{\Diag}{Diag}
@@ -59,6 +69,10 @@
 % extract diagonal from matrix
 % \diag(X)
 \DeclareMathOperator{\diag}{diag}
+
+% distance
+% \dist_G(r,s)
+\DeclareMathOperator{\dist}{dist}
 
 % the empty set
 % \emptyset
