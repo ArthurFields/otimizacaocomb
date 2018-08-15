@@ -29,8 +29,9 @@
 \usepackage{packages}
 
 \title{MAC0325 Combinatorial Optimization: Lecture Notes}
-\author{Instructor: Marcel {K.} de Carli Silva}
-\date{August 13, 2018}
+\author{Instrutor: Marcel {K.} de Carli Silva}
+\date{2º semestre de 2018}
+\renewcommand{\datename}{\emph{Data:}}
 \address{%
   Instituto de Matemática e Estatística, %
   Universidade de São Paulo, %
@@ -48,9 +49,11 @@
 
 \tableofcontents
 
-\setcounter{section}{3}
+\section{Aula de terça-feira, 7 de agosto}
 
-\section*{Lecture 3, Tuesday, August 14}
+\section{Aula de quinta-feira, 9 de agosto}
+
+\section{Aula de terça-feira, 14 de agosto}
 
 To solve an optimization problem means to determine whether it is
 \begin{enumerate}[(i)]
@@ -60,20 +63,20 @@ To solve an optimization problem means to determine whether it is
   exists.
 \end{enumerate}
 
-\begin{problem}[The Shortest Paths Problem]
-  Given a digraph \(D = (V,A,\varphi)\), vertices \(r,s \in V\), and
-  \(\ell \colon A \to \Reals\), solve the optimization problem
+\begin{problem*}[Problema do Caminho Mínimo]
+  Dado um digrado \(D = (V,A,\varphi)\), vértices \(r,s \in V\) e
+  \(\ell \colon A \to \Reals\), resolva o problema de otimização
   \begin{equation}
     \label{eq:1}
     \tag{SPP}
     \begin{array}{{rl}}
-      \text{Minimize}   & \ell(P) \\
-      \text{subject to} & \text{\(P\) is a path from \(r\) to \(s\) in~\(D\)}.
+      \text{Minimizar} & \ell(P) \\
+      \text{sujeito a} & \text{\(P\) é um caminho de \(r\) a \(s\) em~\(D\)}.
     \end{array}
   \end{equation}
-\end{problem}
+\end{problem*}
 
-\begin{problem}[The Shortest Walks Problem]
+\begin{problem*}[The Shortest Walks Problem]
   Given a digraph \(D = (V,A,\varphi)\), vertices \(r,s \in V\), and
   \(\ell \colon A \to \Reals\), solve the optimization problem
   \begin{equation}
@@ -84,9 +87,9 @@ To solve an optimization problem means to determine whether it is
       \text{subject to} & \text{\(P\) is a path from \(r\) to \(s\) in~\(D\)}.
     \end{array}
   \end{equation}
-\end{problem}
+\end{problem*}
 
-\begin{definition}
+\begin{definition*}
   Let \((X,f)\) and \((Y,g)\) be optimization problems.  A
   \emph{homomorphism} from \((X,f)\) to \((Y,g)\) is a function
   \(\psi \colon X \to Y\) such that \(g(\psi(x)) \leq f(x)\) for each
@@ -94,7 +97,7 @@ To solve an optimization problem means to determine whether it is
   \((Y,g)\), we write \((X,f) \to (Y,g)\).  The problems \((X,f)\) and
   \((Y,g)\) are \emph{equivalent} if \((X,f) \to (Y,g)\) and
   \((Y,g) \to (X,f)\).
-\end{definition}
+\end{definition*}
 
 \begin{exercise}
   \label{ex:1}
