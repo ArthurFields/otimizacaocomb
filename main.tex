@@ -64,7 +64,7 @@ To solve an optimization problem means to determine whether it is
 \end{enumerate}
 
 \begin{problem*}[Problema do Caminho Mínimo]
-  Dado um digrado \(D = (V,A,\varphi)\), vértices \(r,s \in V\) e
+  Dado um digrafo \(D = (V,A,\varphi)\), vértices \(r,s \in V\) e
   \(\ell \colon A \to \Reals\), resolva o problema de otimização
   \begin{equation}
     \label{eq:1}
@@ -266,8 +266,8 @@ It is easy to check that \(y_t\) can be computed in time polynomial in
 \(n = \card{V}\) and~\(t\).  A smart way to do this computationally
 uses dynamic programming, and it is not hard to recover the optimal
 walks from the recurrence relations in~\eqref{eq:5} and~\eqref{eq:6}.
-Suppose that~\eqref{eq:3} holds.  By~\Cref{prop:1,prop:2,ex:4}, if
-\(D\) has no negative circuits, then
+Suppose that~\eqref{eq:3} holds.  By~\Cref{prop:1,prop:2}
+and~\Cref{ex:4}, if \(D\) has no negative circuits, then
 \(y_{n-1} = \dist_{(G,\ell)}(r,\cdot)\).  How can we detect/certify
 whether \(D\) has negative circuits and certify that the walks that we
 find are optimal?
