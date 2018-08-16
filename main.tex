@@ -166,7 +166,7 @@ where the digraph is simple.
 
 Let \(D = (V,A,\varphi)\) be a digraph.  Define
 \begin{alignat*}{2}
-  \label{eq:8}
+  \label{eq:4}
   \deltaout[D](S)
   & \coloneqq
   \setst{
@@ -200,13 +200,15 @@ Define the binary relation \(\reaches_D\) on~\(V\) by
   
 \end{proof}
 
+\section{Aula de quinta-feira, 16 de agosto}
+
 \begin{proposition}
   \label{prop:2}
   Let \(D = (V,A)\) be a digraph, let \(r,s \in V\), and let
   \(\ell \colon A \to \Reals\).  Suppose that~\eqref{eq:3} holds.
   Then
   \begin{equation}
-    \label{eq:4}
+    \label{eq:5}
     \text{\eqref{eq:2} is unbounded}
     \iff
     \text{\(D\) has a negative circuit}.
@@ -224,21 +226,21 @@ Define the binary relation \(\reaches_D\) on~\(V\) by
   there exists an optimal solution.
 \end{exercise}
 
-Let \(D = (V,A)\) be a digraph, let \(r,s \in V\), and let
-\(\ell \colon A \to \Reals\).  For each \(t \in \Naturals\), define
-\(y_t \colon V \to \Reals \cup \set{\infty}\) as
+Sejam \(D = (V,A)\) um digrafo, \(r \in V\) e
+\(\ell \colon A \to \Reals\).  Para cada \(t \in \Naturals\), defina
+\(y_t \colon V \to \Reals \cup \set{\infty}\) como
 \begin{equation}
-  \label{eq:5}
+  \label{eq:6}
   y_0(v)
   \coloneqq
   \begin{cases*}
-    0       & if \(v = r\); \\
-    +\infty & otherwise,    \\
+    0       & se \(v = r\),   \\
+    +\infty & caso contrário, \\
   \end{cases*}
 \end{equation}
-and
+e
 \begin{equation}
-  \label{eq:6}
+  \label{eq:7}
   y_{t+1}(v)
   \coloneqq
   \min\paren[\big]{
@@ -252,20 +254,58 @@ and
   \qquad
   \forall t \in \Naturals.
 \end{equation}
+Para cada \(t \in \Naturals\) e \(v \in V\), sejam
+\begin{equation}
+  \label{eq:8}
+  W_0(v)
+  \coloneqq
+  \begin{cases*}
+    \seq{r} & se \(v = r\),   \\
+    \bot    & caso contrário, \\
+  \end{cases*}
+\end{equation}
+e
+\begin{equation}
+  \label{eq:9}
+  W_{t+1}(v)
+  \coloneqq
+  \begin{cases*}
+    \seq{z_0,\dotsc,a_k,z_k,uv,v} & se \(y_t(u) + \ell(uv) =
+    y_{t+1}(v) < y_t(v)\) e \(W_t(u) = \seq{z_0,\dotsc,a_k,z_k}\), \\
+    W_t(v) & se \(y_{t+1}(v) = y_t(v)\) \\
+  \end{cases*}
+  \quad
+  \forall t \in \Naturals.
+\end{equation}
+Note que \(y_t\) está definido inambiguamente para todo
+\(t \in \Naturals\), enquanto os passeios \(W_t(v)\) não são definidos
+de forma única.  Uma possibilidade para que esses passeios estejam
+unicamente definidos é criar uma ordem total arbitrária~\(\leq\)
+sobre~\(V\) e, em caso de vários arcos \(uv\) tais que
+\(y_{t+1}(v) = y_t(u) + \ell(uv)\), podemos sempre escolher o
+elemento~\(u\) mínimo na ordem~\(\leq\).
 
 \begin{exercise}
   \label{ex:5}
-  Let \(D = (V,A)\) be a digraph, let \(r \in V\), and let
-  \(\ell \colon A \to \Reals\).  Prove that, for each
-  \(t \in \Naturals\) and each \(v \in V\), the smallest cost of a
-  walk in~\(D\) from~\(r\) to~\(v\) with length \(\leq t\) is
-  \(y_t(v)\).
+  Sejam \(D = (V,A)\) um digrafo, \(r \in V\) e
+  \(\ell \colon A \to \Reals\).  Prove que, para cada
+  \(t \in \Naturals\) e cada \(s \in V\), o~valor ótimo do problema de
+  otimização
+  \begin{equation}
+    \tag{SWP\({}_t\)}
+    \begin{array}{{rl}}
+      \text{Minimize}   & \ell(P) \\
+      \text{subject to} & \text{\(P\) é um passeio de \(r\) a \(s\) em~\(D\) de comprimento \(\leq t\)} \\
+    \end{array}
+  \end{equation}
+  é \(y_t(s)\) e \(W_t(s)\) é uma solução ótima se
+  \(y_t(s) < \infty\).
 \end{exercise}
 
 It is easy to check that \(y_t\) can be computed in time polynomial in
 \(n = \card{V}\) and~\(t\).  A smart way to do this computationally
 uses dynamic programming, and it is not hard to recover the optimal
-walks from the recurrence relations in~\eqref{eq:5} and~\eqref{eq:6}.
+walks from the recurrence relations in~\eqref{eq:6} and~\eqref{eq:7}.
 Suppose that~\eqref{eq:3} holds.  By~\Cref{prop:1,prop:2}
 and~\Cref{ex:4}, if \(D\) has no negative circuits, then
 \(y_{n-1} = \dist_{(G,\ell)}(r,\cdot)\).  How can we detect/certify
@@ -292,7 +332,7 @@ potential is finite everywhere.
   \(\ell \colon A \to \Reals\).  If \(y \colon V \to \Reals\) is a
   feasible potential, then
   \begin{equation}
-    \label{eq:7}
+    \label{eq:10}
     \ell(W) \geq y(s) - y(r)
     \qquad
     \text{for any walk~\(W\) from~\(r\) to~\(s\) in~\(D\)}.
@@ -340,8 +380,8 @@ potential is finite everywhere.
   as an exercise.
 \end{proof}
 
-Regarding the functions \(y_t\) defined in~\eqref{eq:5}
-and~\eqref{eq:6}, it is easy to verify that \(y_{t} = y_{t+1}\) if and
+Regarding the functions \(y_t\) defined in~\eqref{eq:6}
+and~\eqref{eq:7}, it is easy to verify that \(y_{t} = y_{t+1}\) if and
 only if \(y_t\) is a feasible potential.  Hence, to detect whether
 \(D\) has a negative circuit, it suffices to check whether
 \(y_{n-1} = y_n\) by \Cref{cor:1}.  To actually find a negative
@@ -351,6 +391,38 @@ circuit, suppose that \(y_n \neq y_{n-1}\).  Since
 from~\(r\) to~\(v\) in~\(D\) of length exactly~\(n\) and cost
 \(\ell(W) < \dist_{(G,\ell)}(r,v)\).  Hence, \(W\) must ``contain'' a
 negative circuit.
+
+\begin{theorem}[O algoritmo de Bellman-Ford]
+  Sejam \(D = (V,A)\) um digrafo, \(r,s \in V\) e
+  \(\ell \colon A \to \Reals\).  Defina \(y_t\) para cada
+  \(t \in \Naturals\) como em~\eqref{eq:6} e~\eqref{eq:7} e defina
+  \(W_t(v)\) para cada \(t \in \Naturals\) e \(v \in V\) como
+  em~\eqref{eq:8} e~\eqref{eq:9}.  Defina
+  \(R \coloneqq \setst{v \in V}{r \reaches_D v}\) e
+  \(S \coloneqq \setst{v \in V}{v \reaches_D s}\).  Defina
+  \(\bar{y} \coloneqq y_{n-1}\restrict{R \cap S}\), onde
+  \(n \coloneqq \card{V}\).  Então vale precisamente uma das
+  afirmações abaixo:
+  \begin{enumerate}[(i)]
+  \item O problema~\eqref{eq:2} é inviável e
+    \(R = \setst{v \in V}{\bar{y}_v < \infty}\) satisfaz \(r \in R\),
+    \(s \not\in R\) e \(\deltaout(R) = \emptyset\).
+  \item O problema~\eqref{eq:2} é ilimitado e existe \(v \in V\) tal
+    que o passeio \(W_n(v) = \seq{v_0,a_1,v_1,\dotsc,a_n,v_n}\) tem
+    comprimento~\(n\) e, para quaisquer \(i,j \in \set{0,\dotsc,n}\)
+    com \(i < j\) e \(v_i = v_j\), o passeio
+    \(W_{ij} \coloneqq \seq{v_i,\dotsc,v_j}\) satisfaz
+    \(\ell(W_{ij}) < 0\).
+  \item O problema~\eqref{eq:2} tem valor ótimo
+    \(\bar{y}(s) \in \Reals\), o caminho \(W_{n-1}(s)\) é solução
+    ótima para~\eqref{eq:2} e~\eqref{eq:1}, e \(\bar{y}\) é um
+    potencial viável.
+  \end{enumerate}
+\end{theorem}
+\begin{proof}
+  Novamente este é um resumo do que foi discutido acima.  Escreva a
+  prova completa como exercício.
+\end{proof}
 
 \nocite{CookCPS98a,Schrijver03a}
 
