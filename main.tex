@@ -463,6 +463,264 @@ negative circuit.
   prova completa como exercício.
 \end{proof}
 
+\begin{exercise}[O algoritmo de Dijkstra]
+  Sejam \(D = (V,A)\) um digrafo, \(r \in V\) e
+  \(\ell \colon A \to \Reals_+\), onde
+  \(\Reals_+ \coloneqq \setst{x \in \Reals}{x \geq 0}\).  Suponha que,
+  para todo \(v \in V\), vale que \(r \reaches_D v\).  Defina \(y_0\)
+  como em~\eqref{eq:2} acima e \(V_0 \coloneqq \emptyset\).  Para cada
+  \(t \in \Naturals\), defina
+  \begin{gather*}
+    U_t
+    \coloneqq
+    \argmin\setst{y_t(v)}{v \in V \setminus V_t},
+    \\
+    V_{t+1}
+    \coloneqq
+    V_t \cup U_t,
+    \\
+    y_{t+1}(v)
+    \coloneqq
+    \begin{cases*}
+      y_t(v)
+      &
+      se \(v \in V_{t+1}\),
+      \\
+      \min\paren[\big]{
+        \set{y_t(v)}
+        \cup
+        \setst{y_t(u) + \ell(uv)}{uv \in A,\, u \in U_t}
+      }
+      &
+      caso contrário,
+    \end{cases*}
+    \qquad
+    \forall v \in V.
+  \end{gather*}
+  Prove que, para cada \(t \in \Naturals\), o potencial
+  \(y_t\restrict{V_{t+1}}\) é viável no digrafo \(D[V_{t+1}]\).
+\end{exercise}
+
+Seja \(G = (V,E,\varphi)\) um grafo.  Para cada \(M \subseteq E\),
+denote \(V_M \coloneqq \bigcup_{e \in E} \varphi(e)\).  Dizemos que
+\(M \subseteq E\) é um \emph{emparelhamento} se
+\(\card{V_M} = 2\card{M}\).  Note que \(M\) é um emparelhamento se, e
+somente se, \(M\) não possui laços e, para quaisquer \(e,f \in M\)
+distintos, vale que \(\varphi(e) \cap \varphi(f) = \emptyset\).  Neste
+caso, os vértices de \(V_M\) são \emph{saturados} ou \emph{cobertos}
+por~\(M\).  O emparelhamento \(M\) é \emph{perfeito} se \(V_M = V\).
+
+\begin{problem*}[Problema do Emparelhamento de Peso Máximo]
+  Dado um grafo \(G = (V,E,\varphi)\) e \(w \colon E \to \Reals\),
+  resolva o problema de otimização
+  \begin{equation}
+    \label{eq:12}
+    \begin{array}{{rl}}
+      \text{Maximizar} & w(M) \\
+      \text{sujeito a} & \text{\(M\) é um emparelhamento em \(G\)}.
+    \end{array}
+  \end{equation}
+\end{problem*}
+
+O valor ótimo de~\eqref{eq:12} é denotado por \(\nu_w(G)\).
+
+\begin{problem*}[Problema do Emparelhamento Perfeito de Peso Mínimo]
+  Dado um grafo \(G = (V,E,\varphi)\) e \(w \colon E \to \Reals\),
+  resolva o problema de otimização
+  \begin{equation}
+    \label{eq:13}
+    \begin{array}{{rl}}
+      \text{Minimizar} & w(M) \\
+      \text{sujeito a} & \text{\(M\) é um emparelhamento perfeito em \(G\)}.
+    \end{array}
+  \end{equation}
+\end{problem*}
+
+Vamos iniciar com o caso \(w = \ones\).  Nesse caso (de
+cardinalidade), esses problemas se traduzem a: encontrar um
+emparelhamento máximo e decidir se o grafo tem algum emparelhamento
+perfeito.  Denote \(\nu \coloneqq \nu_{\ones}\).  Um emparelhamento
+em~\(G\) de tamanho \(\nu(G)\) é \emph{máximo} (em~\(G\)).
+
+Seja \(G = (V,E,\varphi)\) um grafo, \(M \subseteq E\) um
+emparelhamento e \(P = \seq{v_0,e_1,v_1,\dotsc,e_k,v_k}\) um caminho
+em~\(G\).  O caminho \(P\) é \emph{\(M\)-alternante} se, para cada
+\(i \in [k-1]\), vale \(e_i \in M \iff e_{i+1} \not\in M\).  Se \(P\)
+é \(M\)-alternante, então
+\(V(P) \setminus \set{v_0,v_k} \subseteq V_M\); se \(v_0,v_k \not\in
+V_M\), dizemos que \(P\) é \emph{\(M\)-aumentador}.
+
+\begin{exercise}
+  \label{ex:6}
+  Seja \(G = (V,E,\varphi)\) um grafo, \(M \subseteq E\) um
+  emparelhamento e \(P\) um caminho \(M\)-alternante de \(r\) a~\(s\)
+  em~\(G\).  Prove que \(N \coloneqq M \mathbin{\Delta} E(P)\) é um
+  emparelhamento e que \(V_N = V_M \mathbin{\Delta} \set{r,s}\).  Em
+  particular, se \(P\) é \(M\)-aumentador, então \(M\) não é
+  emparelhamento máximo.
+\end{exercise}
+
+\begin{theorem}[Teorema de Berge]
+  Seja \(G = (V,E,\varphi)\) um grafo e \(M \subseteq E\) um
+  emparelhamento.  Então \(M\) é emparelhamento máximo \(\iff\) não
+  existe caminho \(M\)-aumentador em~\(G\).
+\end{theorem}
+\begin{proof}
+  Necessidade segue imediatamente do \Cref{ex:6}.  Vamos provar a
+  conversa da suficiência.  Suponha que \(M\) não é máximo, e seja
+  \(N\) um emparelhamento tal que \(\card{N} > \card{M}\).  Se, para
+  cada componente \(K\) de
+  \(H \coloneqq (V, M \mathbin{\Delta} N, \varphi\restrict{M
+    \mathbin{\Delta} N})\), temos
+  \(\card{N \cap E[K]} \leq \card{M \cap E[K]}\), então
+  \(\card{N} \leq \card{M}\).  Logo, existe um componente \(K\)
+  de~\(H\) tal que \(N' \coloneqq N \cap E[K]\) tem mais arestas que
+  \(M' \coloneqq M \cap E[K]\).  Seja
+  \(P \coloneqq \seq{v_0,e_1,v_1,\dotsc,e_k,v_k}\) um caminho
+  em~\(H[K]\) de comprimento máximo.  Não é difícil provar que
+  (exercício!):
+  \begin{enumerate}
+  \item \(V(P) = K\) e \(E(P) = H[K]\);
+  \item \(P\) é \(M\)- e \(N\)-alternante;
+  \item \(v_1,\dotsc,v_{k-1} \in V_{M'} \cap V_{N'}\).
+  \end{enumerate}
+  Como
+  \(\card{V_{N'}} > \card{V_{M'}}\) e ambos esses números são pares,
+  segue que \(v_0,v_k \in V_{N'} \setminus V_{M'} \subseteq V_N
+  \setminus V_M\) e portanto \(P\) é um caminho \(M\)-aumentador.
+\end{proof}
+
+Note que o teorema acima não fornece um certificado de otimalidade de
+um emparelhamento.
+
+Seja \(D = (V,A,\varphi)\) um digrafo.  O \emph{grafo subjacente}
+a~\(D\) é o grafo \((V,A,\psi)\) onde
+\begin{equation*}
+  \psi(a)
+  \coloneqq
+  \begin{cases*}
+    vv
+    &
+    se \(\varphi(a) = vv\),
+    \\
+    uv
+    &
+    se \(\varphi(a) = uv\).
+  \end{cases*}
+\end{equation*}
+Seja \(G\) um grafo.  Um digrafo \(D\) é uma \emph{orientação}
+de~\(G\) se \(G\) é o grafo subjacente a~\(D\).
+
+Seja \(G = (V,E,\varphi)\) um grafo.  Dizemos que \(S\) é
+\emph{estável} se \(G[S]\) não tem arestas.  Se \(U,W \subseteq V\)
+são disjuntos e estáveis e vale que \(U \cup W = V\), dizemos que
+\(G\) é \emph{\((U,W)\)-bipartido}.
+
+Seja \(G = (V,E,\varphi)\) um grafo \((U,W)\)-bipartido.  Seja
+\(M \subseteq E\) um emparelhamento e tome
+\(\overline{M} \coloneqq E \setminus M\).  Defina o digrafo
+\(D_M \coloneqq (V,E,\psi)\) onde
+\begin{equation*}
+  \psi(e)
+  \coloneqq
+  \begin{cases*}
+    uw
+    &
+    se \(e \in \overline{M}\) e \(\varphi(e) = uw\) com \(u \in U\) e \(w \in W\),
+    \\
+    wu
+    &
+    se \(e \in M\) e \(\varphi(e) = uw\)  com \(u \in U\) e \(w \in W\),
+  \end{cases*}
+  \qquad
+  \forall e \in E.
+\end{equation*}
+
+\begin{exercise}
+  Seja \(G = (V,E,\varphi)\) um grafo \((U,W)\)-bipartido.  Seja
+  \(M \subseteq E\) um emparelhamento.  Seja \(P\) um caminho em~\(G\)
+  com início em \(u \in U\).  Prove que \(P\) é \(M\)-aumentador
+  \(\iff\) \(P\) é um caminho em \(D_M\) de \(U \setminus V_M\) a
+  \(V \setminus V_M\).
+\end{exercise}
+
+% Seja \(G = (V,E,\varphi)\) um grafo sem laços.  Defina
+% \begin{equation*}
+%   \delta_G(S)
+%   \coloneqq
+%   \setst{
+%     e \in E
+%   }{
+%     \varphi(e) \cap S \neq \emptyset,\,
+%     \varphi(e) \cap \overline{S} \neq \emptyset
+%   }
+%   \qquad
+%   \forall S \subseteq V,
+% \end{equation*}
+% onde \(\overline{S} \coloneqq V \setminus S\) para todo
+% \(S \subseteq V\).  O conjunto \(\delta_G(S)\) é o \emph{corte}
+% de~\(G\) com \emph{margem}~\(S\).  Note que, para todo
+% \(S \subseteq V\), vale \(\delta_G(S) = \delta_G(\overline{S})\).
+% Abreviamos
+% \begin{alignat*}{2}
+%   \delta_G(v)
+%   & \coloneqq
+%   \delta_G(\set{v})
+%   & \qquad &
+%   \forall v \in V,
+%   \\
+%   \deg_G(v)
+%   & \coloneqq
+%   \card{\delta_G(v)}
+%   & \qquad &
+%   \forall v \in V.
+% \end{alignat*}
+% Denote \(\Delta(G) \coloneqq \max_{v \in V} \deg_G(v)\).
+
+% Sejam \(G = (V,E)\) e \(H = (W,F)\) grafos.  Um \emph{homomorfismo}
+% de~\(G\) para~\(H\) é uma função \(\pi \colon V \to W\) tal que, para
+% todo \(e = \set{i,j} \in E\), vale que \(\set{\pi(i),\pi(j)} \in F\).
+% Um \emph{isomorfismo} de~\(G\) para~\(H\) é uma função \(\pi\) que é
+% um homomorfismo bijetor de~\(G\) para~\(H\) cuja inversa é um
+% homomorfismo de~\(H\) para~\(G\).
+
+\appendix
+
+\section{Notação}
+
+\bgroup
+\renewcommand{\arraystretch}{1.2}
+\begin{table}[!ht]
+  \centering
+  \begin{tabular}{r c p{12cm} }
+    \toprule
+    \([n]\)
+    & \(\coloneqq\) &
+    \(\set{1,\dotsc,n}\) para cada \(n \in \Naturals\)
+    \\
+    \(\Reals_+\)
+    & \(\coloneqq\) &
+    \(\setst{x \in \Reals}{x \geq 0}\), o conjunto dos reais não negativos
+    \\
+    \(\displaystyle\argmin_{x \in X} f(x)\)
+    & \(\coloneqq\) &
+    \(\setst{x^{\star} \in X}{\forall x \in X,\,f(x^*) \leq f(x)}\)
+    \\
+    \(A \mathbin{\Delta} B\)
+    & \(\coloneqq\) &
+    \((A \setminus B) \cup (B \setminus A)\),
+    a \emph{diferença simétrica} entre conjuntos \(A\) e \(B\)
+    \\
+    \(\ones\)
+    & \(\coloneqq\) &
+    o vetor formado só por \(1\)'s no espaço apropriado
+    \\
+    \bottomrule
+  \end{tabular}
+  \label{tbl:special-sets}
+\end{table}
+\egroup                         % \arraystretch
+
 \nocite{CookCPS98a,Schrijver03a}
 
 \begingroup
