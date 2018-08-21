@@ -57,6 +57,30 @@
 
 \section{Aula de terça-feira, 7 de agosto}
 
+Um \emph{problema de otimização} é um par ordenado \((X,f)\) onde
+\(X\) é um conjunto, chamado \emph{conjunto viável} ou \emph{região
+  viável}, e \(f \colon X \to \Reals\) é uma função, chamada
+\emph{função objetivo}.  Mais comumente, nos referimos ao problema de
+otimização \((X,f)\) como o problema:
+\begin{equation}
+  \label{eq:1}
+  \tag{OPT}
+  \begin{array}{{rl}}
+    \text{Minimizar} & f(x)     \\
+    \text{sujeito a} & x \in X. \\
+  \end{array}
+\end{equation}
+Cada elemento de \(X\) é uma \emph{solução viável} de~\eqref{eq:1} e
+seu \emph{valor objetivo} é \(f(x)\).  O \emph{valor ótimo}
+de~\eqref{eq:1} é \(\inf_{x \in X}f(x) \in [-\infty,+\infty]\).  O
+problema é \emph{inviável} se \(X = \emptyset\).  Note que o valor
+ótimo de um problema é \(+\infty\) se, e somente se, o problema é
+inviável.  Se o valor ótimo é \(-\infty\), o problema é
+\emph{ilimitado}.  Uma \emph{solução ótima} é uma solução viável cujo
+valor objetivo é o valor ótimo do problema; equivalentemente,
+\(x^{\star} \in X\) é solução ótima se, e somente se, para todo
+\(x \in X\), vale que \(f(x^{\star}) \leq f(x)\).
+
 \section{Aula de quinta-feira, 9 de agosto}
 
 \section{Aula de terça-feira, 14 de agosto}
@@ -72,7 +96,7 @@
   Dado um digrafo \(D = (V,A,\varphi)\), vértices \(r,s \in V\) e
   \(\ell \colon A \to \Reals\), resolva o problema de otimização:
   \begin{equation}
-    \label{eq:1}
+    \label{eq:2}
     \tag{SPP}
     \begin{array}{{rl}}
       \text{Minimizar} & \ell(P) \\
@@ -85,7 +109,7 @@
   Dados um digrafo \(D = (V,A,\varphi)\), vértices \(r,s \in V\) e
   \(\ell \colon A \to \Reals\), resolva o problema de otimização:
   \begin{equation}
-    \label{eq:2}
+    \label{eq:3}
     \tag{SWP}
     \begin{array}{{rl}}
       \text{Minimizar}   & \ell(P) \\
@@ -121,9 +145,9 @@
 \end{exercise}
 
 \Cref{ex:1} mostra que pouca generalidade é perdida tanto em
-\eqref{eq:1} quanto em \eqref{eq:2} se assumimos que,
+\eqref{eq:2} quanto em \eqref{eq:3} se assumimos que,
 \begin{equation}
-  \label{eq:3}
+  \label{eq:4}
   \text{para cada \(v \in V\), temos \(r \reaches_D v \reaches_D s\).}
 \end{equation}
 Também é óbvio como reduzir qualquer instância de ambos os problemas para 
@@ -141,8 +165,8 @@ uma em que o digrafo seja simples.
   \label{ex:3}
   Sejam \(D = (V,A)\) um digrafo, \(r,s \in V\) e
   \(\ell \colon A \to \Reals\).  Se
-  \(\seq{v_0,a_1,v_1,\dotsc,a_k,v_k}\) é uma solução ótima para
-  ~\eqref{eq:2} e \(v_i = v_j\) para alguns
+  \(\seq{v_0,a_1,v_1,\dotsc,a_k,v_k}\) é uma solução ótima
+  para~\eqref{eq:2} e \(v_i = v_j\) para alguns
   \(i,j \in \set{0,\dotsc,k}\) tais que \(i < j\), então
   \(C \coloneqq \seq{v_i,a_{i+1},v_{i+1},\dotsc,a_j,v_j}\) tem custo
   \(\ell(C) \geq 0\).
@@ -151,9 +175,9 @@ uma em que o digrafo seja simples.
 \begin{proposition}
   \label{prop:1}
   Sejam \(D = (V,A)\) um digrafo, \(r,s \in V\) e
-  \(\ell \colon A \to \Reals\).  Então qualquer solução ótima de
-  ~\eqref{eq:2} de comprimento mínimo é um caminho e, logo, uma
-  solução ótima para~\eqref{eq:1}.
+  \(\ell \colon A \to \Reals\).  Então qualquer solução ótima
+  de~\eqref{eq:3} de comprimento mínimo é um caminho e, logo, uma
+  solução ótima para~\eqref{eq:2}.
 \end{proposition}
 \begin{proof}
   Seja \(W = \seq{v_0,a_1,v_1,\dotsc,a_k,v_k}\) uma solução ótima
@@ -172,7 +196,7 @@ uma em que o digrafo seja simples.
 
 Seja \(D = (V,A,\varphi)\) um digrafo.  Defina:
 \begin{alignat*}{2}
-  \label{eq:4}
+  \label{eq:5}
   \deltaout[D](S)
   & \coloneqq
   \setst{
@@ -217,11 +241,11 @@ Defina agora a relação binária \(\reaches_D\) em~\(V\) por
 \begin{proposition}
   \label{prop:2}
   Sejam \(D = (V,A)\) um digrafo, \(r,s \in V\) e
-  \(\ell \colon A \to \Reals\).  Suponha que vale~\eqref{eq:3}.
+  \(\ell \colon A \to \Reals\).  Suponha que vale~\eqref{eq:4}.
   Então
   \begin{equation}
-    \label{eq:5}
-    \text{\eqref{eq:2} é ilimitado}
+    \label{eq:6}
+    \text{\eqref{eq:3} é ilimitado}
     \iff
     \text{\(D\) tem um circuito negativo}.
   \end{equation}
@@ -233,8 +257,8 @@ Defina agora a relação binária \(\reaches_D\) em~\(V\) por
 \begin{exercise}
   \label{ex:4}
   Sejam \(D = (V,A)\) um digrafo, let \(r,s \in V\) e
-  \(\ell \colon A \to \Reals\).  Suponha que vale~\eqref{eq:3}.
-  Prove que, se o valor ótimo de~\eqref{eq:2} é finito, então
+  \(\ell \colon A \to \Reals\).  Suponha que vale~\eqref{eq:4}.
+  Prove que, se o valor ótimo de~\eqref{eq:4} é finito, então
   existe uma solução ótima.
 \end{exercise}
 
@@ -242,7 +266,7 @@ Sejam \(D = (V,A)\) um digrafo, \(r \in V\) e
 \(\ell \colon A \to \Reals\).  Para cada \(t \in \Naturals\), defina
 \(y_t \colon V \to \Reals \cup \set{\infty}\) como
 \begin{equation}
-  \label{eq:6}
+  \label{eq:7}
   y_0(v)
   \coloneqq
   \begin{cases*}
@@ -252,7 +276,7 @@ Sejam \(D = (V,A)\) um digrafo, \(r \in V\) e
 \end{equation}
 e
 \begin{equation}
-  \label{eq:7}
+  \label{eq:8}
   y_{t+1}(v)
   \coloneqq
   \min\paren[\big]{
@@ -268,7 +292,7 @@ e
 \end{equation}
 Para cada \(t \in \Naturals\) e \(v \in V\), sejam
 \begin{equation}
-  \label{eq:8}
+  \label{eq:9}
   W_0(v)
   \coloneqq
   \begin{cases*}
@@ -278,7 +302,7 @@ Para cada \(t \in \Naturals\) e \(v \in V\), sejam
 \end{equation}
 e
 \begin{equation}
-  \label{eq:9}
+  \label{eq:10}
   W_{t+1}(v)
   \coloneqq
   \begin{cases*}
@@ -317,8 +341,8 @@ elemento~\(u\) mínimo na ordem~\(\leq\).
 É fácil verificar que \(y_t\) pode ser computada em tempo polinomial em
 \(n = \card{V}\) e~\(t\).  Um jeito esperto de fazer isso computacionalmente
 usa programação dinâmica e não é difícil recuperar os passeios ótimos das 
-relações de recorrência em~\eqref{eq:6} e~\eqref{eq:7}.
-Suponha que vale~\eqref{eq:3}.  Pelas~\Cref{prop:1,prop:2}
+relações de recorrência em~\eqref{eq:7} e~\eqref{eq:8}.
+Suponha que vale~\eqref{eq:4}.  Pelas~\Cref{prop:1,prop:2}
 e pelo~\Cref{ex:4}, se \(D\) não tem circuitos negativos, então
 \(y_{n-1} = \dist_{(G,\ell)}(r,\cdot)\).  Como podemos detectar/certificar
 se \(D\) tem circuitos negativos e certificar que os passeios que encontramos
@@ -344,7 +368,7 @@ potential is finite everywhere.
   \(\ell \colon A \to \Reals\).  If \(y \colon V \to \Reals\) is a
   feasible potential, then
   \begin{equation}
-    \label{eq:10}
+    \label{eq:11}
     \ell(W) \geq y(s) - y(r)
     \qquad
     \text{for any walk~\(W\) from~\(r\) to~\(s\) in~\(D\)}.
@@ -392,8 +416,8 @@ potential is finite everywhere.
   as an exercise.
 \end{proof}
 
-Regarding the functions \(y_t\) defined in~\eqref{eq:6}
-and~\eqref{eq:7}, it is easy to verify that \(y_{t} = y_{t+1}\) if and
+Regarding the functions \(y_t\) defined in~\eqref{eq:7}
+and~\eqref{eq:8}, it is easy to verify that \(y_{t} = y_{t+1}\) if and
 only if \(y_t\) is a feasible potential.  Hence, to detect whether
 \(D\) has a negative circuit, it suffices to check whether
 \(y_{n-1} = y_n\) by \Cref{cor:1}.  To actually find a negative
@@ -404,31 +428,34 @@ from~\(r\) to~\(v\) in~\(D\) of length exactly~\(n\) and cost
 \(\ell(W) < \dist_{(G,\ell)}(r,v)\).  Hence, \(W\) must ``contain'' a
 negative circuit.
 
+\section{Aula de terça-feira, 21 de agosto}
+
 \begin{theorem}[O algoritmo de Bellman-Ford]
   Sejam \(D = (V,A)\) um digrafo, \(r,s \in V\) e
   \(\ell \colon A \to \Reals\).  Defina \(y_t\) para cada
-  \(t \in \Naturals\) como em~\eqref{eq:6} e~\eqref{eq:7} e defina
+  \(t \in \Naturals\) como em~\eqref{eq:7} e~\eqref{eq:8} e defina
   \(W_t(v)\) para cada \(t \in \Naturals\) e \(v \in V\) como
-  em~\eqref{eq:8} e~\eqref{eq:9}.  Defina
+  em~\eqref{eq:9} e~\eqref{eq:10}.  Defina
   \(R \coloneqq \setst{v \in V}{r \reaches_D v}\) e
   \(S \coloneqq \setst{v \in V}{v \reaches_D s}\).  Defina
   \(\bar{y} \coloneqq y_{n-1}\restrict{R \cap S}\), onde
   \(n \coloneqq \card{V}\).  Então vale precisamente uma das
   afirmações abaixo:
   \begin{enumerate}[(i)]
-  \item O problema~\eqref{eq:2} é inviável e
+  \item O problema~\eqref{eq:3} é inviável e
     \(R = \setst{v \in V}{\bar{y}_v < \infty}\) satisfaz \(r \in R\),
     \(s \not\in R\) e \(\deltaout(R) = \emptyset\).
-  \item O problema~\eqref{eq:2} é ilimitado e existe \(v \in V\) tal
+  \item O problema~\eqref{eq:3} é ilimitado e existe \(v \in V\) tal
     que o passeio \(W_n(v) = \seq{v_0,a_1,v_1,\dotsc,a_n,v_n}\) tem
     comprimento~\(n\) e, para quaisquer \(i,j \in \set{0,\dotsc,n}\)
     com \(i < j\) e \(v_i = v_j\), o passeio
     \(W_{ij} \coloneqq \seq{v_i,\dotsc,v_j}\) satisfaz
     \(\ell(W_{ij}) < 0\).
-  \item O problema~\eqref{eq:2} tem valor ótimo
-    \(\bar{y}(s) \in \Reals\), o caminho \(W_{n-1}(s)\) é solução
-    ótima para~\eqref{eq:2} e~\eqref{eq:1}, e \(\bar{y}\) é um
-    potencial viável.
+  \item O problema~\eqref{eq:3} tem valor ótimo
+    \(\bar{y}_s \in \Reals\), o caminho
+    \(P^{\star} \coloneqq W_{n-1}(s)\) é solução ótima
+    para~\eqref{eq:3} e~\eqref{eq:2}, e \(\bar{y}\) é um potencial
+    viável tal que \(\ell(P^{\star}) = \bar{y}_s - \bar{y}_r\).
   \end{enumerate}
 \end{theorem}
 \begin{proof}
