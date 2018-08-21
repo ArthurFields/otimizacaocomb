@@ -61,17 +61,16 @@
 
 \section{Aula de terça-feira, 14 de agosto}
 
-To solve an optimization problem means to determine whether it is
+\emph{Resolver um problema de otimização} significa:
 \begin{enumerate}[(i)]
-\item infeasible, or
-\item unbounded, or
-\item determine the optimal value and find an optimal solution, if one
-  exists.
+\item determinar se ele é inviável, ou
+\item determinar se ele é ilimitado, ou
+\item determinar o valor ótimo e achar uma solução ótima, se existir.
 \end{enumerate}
 
 \begin{problem*}[Problema do Caminho Mínimo]
   Dado um digrafo \(D = (V,A,\varphi)\), vértices \(r,s \in V\) e
-  \(\ell \colon A \to \Reals\), resolva o problema de otimização
+  \(\ell \colon A \to \Reals\), resolva o problema de otimização:
   \begin{equation}
     \label{eq:1}
     \tag{SPP}
@@ -82,95 +81,96 @@ To solve an optimization problem means to determine whether it is
   \end{equation}
 \end{problem*}
 
-\begin{problem*}[The Shortest Walks Problem]
-  Given a digraph \(D = (V,A,\varphi)\), vertices \(r,s \in V\), and
-  \(\ell \colon A \to \Reals\), solve the optimization problem
+\begin{problem*}[Problema do Passeio Mínimo]
+  Dados um digrafo \(D = (V,A,\varphi)\), vértices \(r,s \in V\) e
+  \(\ell \colon A \to \Reals\), resolva o problema de otimização:
   \begin{equation}
     \label{eq:2}
     \tag{SWP}
     \begin{array}{{rl}}
-      \text{Minimize}   & \ell(P) \\
-      \text{subject to} & \text{\(P\) is a walk from \(r\) to \(s\) in~\(D\)}.
+      \text{Minimizar}   & \ell(P) \\
+      \text{sujeito a} & \text{\(P\) é um passeio de \(r\) a \(s\) em~\(D\)}.
     \end{array}
   \end{equation}
 \end{problem*}
 
 \begin{definition*}
-  Let \((X,f)\) and \((Y,g)\) be optimization problems.  A
-  \emph{homomorphism} from \((X,f)\) to \((Y,g)\) is a function
-  \(\psi \colon X \to Y\) such that \(g(\psi(x)) \leq f(x)\) for each
-  \(x \in X\).  If there exists a homomorphism from \((X,f)\) to
-  \((Y,g)\), we write \((X,f) \to (Y,g)\).  The problems \((X,f)\) and
-  \((Y,g)\) are \emph{equivalent} if \((X,f) \to (Y,g)\) and
+  Sejam \((X,f)\) e \((Y,g)\) problemas de otimização.  Um
+  \emph{homomorfismo} de \((X,f)\) a \((Y,g)\) é uma função
+  \(\psi \colon X \to Y\) tal que \(g(\psi(x)) \leq f(x)\) para todo
+  \(x \in X\).  Se existe um homomorfismo de \((X,f)\) a
+  \((Y,g)\), escrevemos \((X,f) \to (Y,g)\).  Os problemas \((X,f)\) e
+  \((Y,g)\) são \emph{equivalentes} se \((X,f) \to (Y,g)\) e
   \((Y,g) \to (X,f)\).
 \end{definition*}
 
 \begin{exercise}
   \label{ex:1}
-  Prove that either problem \eqref{eq:1} or \eqref{eq:2} is equivalent
-  to the same problem applied to the induced subdigraph \(D[V_{rs}]\)
-  where
-  \(V_{rs} \coloneqq \setst{v \in V}{r \reaches_D v \text{ and }v
+  Prove que tanto o problema \eqref{eq:1} quanto \eqref{eq:2} são equivalentes
+  ao mesmo problema aplicado ao subdigrafo induzido \(D[V_{rs}]\)
+  em que
+  \(V_{rs} \coloneqq \setst{v \in V}{r \reaches_D v \text{ e }v
     \reaches_D s}\).
 \end{exercise}
 
 \begin{exercise}
-  Prove that, if two optimization problems are equivalent, they both
-  have one of the possible outcomes: (i) infeasible; (ii) unbounded;
-  (iii) finite optimal value but not optimal solution; (iv) finite
-  optimal value and there exists an optimal solution.
+  Prove que, se dois problemas de otimização são equivalentes, então
+  ambos têm um desses possíveis resultados: (i) inviável; (ii) ilimitado;
+  (iii) valor ótimo finito mas sem solução ótima; (iv) valor ótimo finito
+  e existe uma solução ótima.
 \end{exercise}
 
-\Cref{ex:1} shows that very little generality is lost in either
-\eqref{eq:1} or \eqref{eq:2} if we assume that,
+\Cref{ex:1} mostra que pouca generalidade é perdida tanto em
+\eqref{eq:1} quanto em \eqref{eq:2} se assumimos que,
 \begin{equation}
   \label{eq:3}
-  \text{for each \(v \in V\), we have \(r \reaches_D v \reaches_D s\).}
+  \text{para cada \(v \in V\), temos \(r \reaches_D v \reaches_D s\).}
 \end{equation}
-It is also obvious how to reduce any instance of either problem to one
-where the digraph is simple.
+Também é óbvio como reduzir qualquer instância de ambos os problemas para 
+uma em que o digrafo seja simples.
 
 \begin{exercise}
   \label{ex:2}
-  Let \(D = (V,A)\) be a digraph, let \(r,s \in V\), and let
-  \(\ell \colon A \to \Reals\).  Prove that, if some optimal solution
-  \(W^\star\) of~\eqref{eq:2} is a path, then \(W^\star\) is an
-  optimal solution of~\eqref{eq:1}.
+  Sejam \(D = (V,A)\) um digrafo, \(r,s \in V\) e
+  \(\ell \colon A \to \Reals\).  Prove que, se uma determinada solução
+  ótima \(W^\star\) para~\eqref{eq:2} é um caminho, então \(W^\star\) é uma
+  solução ótima para~\eqref{eq:1}.
 \end{exercise}
 
 \begin{exercise}
   \label{ex:3}
-  Let \(D = (V,A)\) be a digraph, let \(r,s \in V\), and let
-  \(\ell \colon A \to \Reals\).  If
-  \(\seq{v_0,a_1,v_1,\dotsc,a_k,v_k}\) is an optimal solution
-  for~\eqref{eq:2} and \(v_i = v_j\) for some
-  \(i,j \in \set{0,\dotsc,k}\) such that \(i < j\), then
-  \(C \coloneqq \seq{v_i,a_{i+1},v_{i+1},\dotsc,a_j,v_j}\) costs
+  Sejam \(D = (V,A)\) um digrafo, \(r,s \in V\) e
+  \(\ell \colon A \to \Reals\).  Se
+  \(\seq{v_0,a_1,v_1,\dotsc,a_k,v_k}\) é uma solução ótima para
+  ~\eqref{eq:2} e \(v_i = v_j\) para alguns
+  \(i,j \in \set{0,\dotsc,k}\) tais que \(i < j\), então
+  \(C \coloneqq \seq{v_i,a_{i+1},v_{i+1},\dotsc,a_j,v_j}\) tem custo
   \(\ell(C) \geq 0\).
 \end{exercise}
 
 \begin{proposition}
   \label{prop:1}
-  Let \(D = (V,A)\) be a digraph, let \(r,s \in V\), and let
-  \(\ell \colon A \to \Reals\).  Then any optimal solution
-  to~\eqref{eq:2} of minimum length is a path, and hence an optimal
-  solution to~\eqref{eq:1}.
+  Sejam \(D = (V,A)\) um digrafo, \(r,s \in V\) e
+  \(\ell \colon A \to \Reals\).  Então qualquer solução ótima de
+  ~\eqref{eq:2} de comprimento mínimo é um caminho e, logo, uma
+  solução ótima para~\eqref{eq:1}.
 \end{proposition}
 \begin{proof}
-  Let \(W = \seq{v_0,a_1,v_1,\dotsc,a_k,v_k}\) be an optimal solution
-  for~\eqref{eq:2} with the minimum number of arcs.  If there exist
-  \(i,j \in \set{0,\dotsc,k}\) such that \(v_i = v_j\) and \(i < j\),
-  then
+  Seja \(W = \seq{v_0,a_1,v_1,\dotsc,a_k,v_k}\) uma solução ótima
+  para~\eqref{eq:2} com número de arcos mínimo.  Se existem
+  \(i,j \in \set{0,\dotsc,k}\) tais que \(v_i = v_j\) e \(i < j\),
+  então
   \(W' \coloneqq
-  \seq{v_0,a_1,v_1,\dotsc,a_i,v_i,a_{j+1},v_{j+1},\dotsc,a_k,v_k}\) is
-  a walk from~\(r\) to~\(s\) with \(\ell(W') = \ell(W) - \ell(C)\) for
-  \(C \coloneqq \seq{v_i,a_{i+1},v_{i+1},\dotsc,a_j,v_j}\) so
-  \(\ell(W') \leq \ell(W)\) by \Cref{ex:3}.  By optimality,
-  \(\ell(W') = \ell(W)\) and \(W'\) has smaller length than~\(W\), a
-  contradiction.  Hence, \(W\) is a path.  We are done by \Cref{ex:2}.
+  \seq{v_0,a_1,v_1,\dotsc,a_i,v_i,a_{j+1},v_{j+1},\dotsc,a_k,v_k}\) é
+  um passeio de~\(r\) para~\(s\) com \(\ell(W') = \ell(W) - \ell(C)\) em que
+  \(C \coloneqq \seq{v_i,a_{i+1},v_{i+1},\dotsc,a_j,v_j}\). Logo,
+  \(\ell(W') \leq \ell(W)\) pelo \Cref{ex:3}.  Como \(W\) é solução ótima,
+  \(\ell(W') = \ell(W)\) e \(W'\) tem comprimento menor do que~\(W\), o que
+  é uma contradição.  Assim, \(W\) é um caminho.  O resultado agora sai
+  diretamente do \Cref{ex:2}.
 \end{proof}
 
-Let \(D = (V,A,\varphi)\) be a digraph.  Define
+Seja \(D = (V,A,\varphi)\) um digrafo.  Defina:
 \begin{alignat*}{2}
   \label{eq:4}
   \deltaout[D](S)
@@ -191,45 +191,51 @@ Let \(D = (V,A,\varphi)\) be a digraph.  Define
   & \qquad &
   \forall S \subseteq V.
 \end{alignat*}
-Define the binary relation \(\reaches_D\) on~\(V\) by
+Defina agora a relação binária \(\reaches_D\) em~\(V\) por
 \begin{equation*}
   r \reaches_D s
-  \text{ if there is a walk from~\(r\) to~\(s\) in~\(D\)}.
+  \text{ se existe um passeio de~\(r\) para~\(s\) em~\(D\)}.
 \end{equation*}
 
 \begin{theorem}
-  Let \(D = (V,A)\) be a digraph and let \(r,s \in V\).  Then
-  \(r \not\reaches_D s \iff\) there exists \(R \subseteq V\) such that
-  \(r \in R\), \(s \not\in R\) and \(\deltaout[D](R) = \emptyset\).
+  Sejam \(D = (V,A)\) um digrafo e \(r,s \in V\).  Então
+  \(r \not\reaches_D s \iff\) existe \(R \subseteq V\) tal que
+  \(r \in R\), \(s \not\in R\) e \(\deltaout[D](R) = \emptyset\).
 \end{theorem}
 \begin{proof}
-  
+(\(\Leftarrow\)) Trivial.
+\\ (\(\Rightarrow\)) Defina \(R \coloneqq \setst{v \in V}{r \reaches_D v}\).
+   Note que \(r \in R\) e \(s \notin R\). Se \(\deltaout[D](R) \neq \emptyset\), 
+   então existe \(v \in \deltaout[D](R)\). Assim, existe \(u \in R\) tal que
+   \(\varphi(v) = uv\). Dessa forma, se \(W = \seq{r,a_1,v_1,\dotsc,a_k,u}\) 
+   é um caminho de \(r\) a \(u\), então \(\seq{r,a_1,v_1,\dotsc,a_k,u,uv,v}\)
+   é um caminho de \(r\) a \(v\). Contradição.
 \end{proof}
 
 \section{Aula de quinta-feira, 16 de agosto}
 
 \begin{proposition}
   \label{prop:2}
-  Let \(D = (V,A)\) be a digraph, let \(r,s \in V\), and let
-  \(\ell \colon A \to \Reals\).  Suppose that~\eqref{eq:3} holds.
-  Then
+  Sejam \(D = (V,A)\) um digrafo, \(r,s \in V\) e
+  \(\ell \colon A \to \Reals\).  Suponha que vale~\eqref{eq:3}.
+  Então
   \begin{equation}
     \label{eq:5}
-    \text{\eqref{eq:2} is unbounded}
+    \text{\eqref{eq:2} é ilimitado}
     \iff
-    \text{\(D\) has a negative circuit}.
+    \text{\(D\) tem um circuito negativo}.
   \end{equation}
 \end{proposition}
-\begin{proof}[Proof Sketch]
+\begin{proof} Desenho.
   
 \end{proof}
 
 \begin{exercise}
   \label{ex:4}
-  Let \(D = (V,A)\) be a digraph, let \(r,s \in V\), and let
-  \(\ell \colon A \to \Reals\).  Suppose that~\eqref{eq:3} holds.
-  Prove that, if the optimal value of~\eqref{eq:2} is finite, then
-  there exists an optimal solution.
+  Sejam \(D = (V,A)\) um digrafo, let \(r,s \in V\) e
+  \(\ell \colon A \to \Reals\).  Suponha que vale~\eqref{eq:3}.
+  Prove que, se o valor ótimo de~\eqref{eq:2} é finito, então
+  existe uma solução ótima.
 \end{exercise}
 
 Sejam \(D = (V,A)\) um digrafo, \(r \in V\) e
@@ -300,28 +306,28 @@ elemento~\(u\) mínimo na ordem~\(\leq\).
   \begin{equation}
     \tag{SWP\({}_t\)}
     \begin{array}{{rl}}
-      \text{Minimize}   & \ell(P) \\
-      \text{subject to} & \text{\(P\) é um passeio de \(r\) a \(s\) em~\(D\) de comprimento \(\leq t\)} \\
+      \text{Minimizar}   & \ell(P) \\
+      \text{sujeito a} & \text{\(P\) é um passeio de \(r\) a \(s\) em~\(D\) de comprimento \(\leq t\)} \\
     \end{array}
   \end{equation}
   é \(y_t(s)\) e \(W_t(s)\) é uma solução ótima se
   \(y_t(s) < \infty\).
 \end{exercise}
 
-It is easy to check that \(y_t\) can be computed in time polynomial in
-\(n = \card{V}\) and~\(t\).  A smart way to do this computationally
-uses dynamic programming, and it is not hard to recover the optimal
-walks from the recurrence relations in~\eqref{eq:6} and~\eqref{eq:7}.
-Suppose that~\eqref{eq:3} holds.  By~\Cref{prop:1,prop:2}
-and~\Cref{ex:4}, if \(D\) has no negative circuits, then
-\(y_{n-1} = \dist_{(G,\ell)}(r,\cdot)\).  How can we detect/certify
-whether \(D\) has negative circuits and certify that the walks that we
-find are optimal?
+É fácil verificar que \(y_t\) pode ser computada em tempo polinomial em
+\(n = \card{V}\) e~\(t\).  Um jeito esperto de fazer isso computacionalmente
+usa programação dinâmica e não é difícil recuperar os passeios ótimos das 
+relações de recorrência em~\eqref{eq:6} e~\eqref{eq:7}.
+Suponha que vale~\eqref{eq:3}.  Pelas~\Cref{prop:1,prop:2}
+e pelo~\Cref{ex:4}, se \(D\) não tem circuitos negativos, então
+\(y_{n-1} = \dist_{(G,\ell)}(r,\cdot)\).  Como podemos detectar/certificar
+se \(D\) tem circuitos negativos e certificar que os passeios que encontramos
+são ótimos?
 
-Let \(D = (V,A)\) be a digraph and let \(\ell \colon A \to \Reals\).
-Let us temporarily call a function
-\(y \colon V \to \Reals \cup \set{\infty}\) a \emph{potential}.  A
-potential is \emph{feasible} if
+Sejam \(D = (V,A)\) um digrafo e \(\ell \colon A \to \Reals\).
+Temporariamente, vamos chamar uma função
+\(y \colon V \to \Reals \cup \set{\infty}\) de \emph{potencial}.  Um
+potencial é \emph{viável} se
 \begin{equation*}
   y(v) \leq y(u) + \ell(uv)
   \qquad
