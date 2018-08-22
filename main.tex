@@ -70,9 +70,9 @@ otimização \((X,f)\) como o problema:
     \text{sujeito a} & x \in X. \\
   \end{array}
 \end{equation}
-Cada elemento de \(X\) é uma \emph{solução viável} de~\eqref{eq:1} e
+Cada elemento de \(X\) é uma \emph{solução viável} de \eqref{eq:1} e
 seu \emph{valor objetivo} é \(f(x)\).  O \emph{valor ótimo}
-de~\eqref{eq:1} é \(\inf_{x \in X}f(x) \in [-\infty,+\infty]\).  O
+de \eqref{eq:1} é \(\inf_{x \in X}f(x) \in [-\infty,+\infty]\).  O
 problema é \emph{inviável} se \(X = \emptyset\).  Note que o valor
 ótimo de um problema é \(+\infty\) se, e somente se, o problema é
 inviável.  Se o valor ótimo é \(-\infty\), o problema é
@@ -157,8 +157,8 @@ uma em que o digrafo seja simples.
   \label{ex:2}
   Sejam \(D = (V,A)\) um digrafo, \(r,s \in V\) e
   \(\ell \colon A \to \Reals\).  Prove que, se uma determinada solução
-  ótima \(W^\star\) para~\eqref{eq:2} é um caminho, então \(W^\star\) é uma
-  solução ótima para~\eqref{eq:1}.
+  ótima \(W^\star\) para \eqref{eq:2} é um caminho, então \(W^\star\) é uma
+  solução ótima para \eqref{eq:1}.
 \end{exercise}
 
 \begin{exercise}
@@ -166,7 +166,7 @@ uma em que o digrafo seja simples.
   Sejam \(D = (V,A)\) um digrafo, \(r,s \in V\) e
   \(\ell \colon A \to \Reals\).  Se
   \(\seq{v_0,a_1,v_1,\dotsc,a_k,v_k}\) é uma solução ótima
-  para~\eqref{eq:2} e \(v_i = v_j\) para alguns
+  para \eqref{eq:2} e \(v_i = v_j\) para alguns
   \(i,j \in \set{0,\dotsc,k}\) tais que \(i < j\), então
   \(C \coloneqq \seq{v_i,a_{i+1},v_{i+1},\dotsc,a_j,v_j}\) tem custo
   \(\ell(C) \geq 0\).
@@ -176,20 +176,20 @@ uma em que o digrafo seja simples.
   \label{prop:1}
   Sejam \(D = (V,A)\) um digrafo, \(r,s \in V\) e
   \(\ell \colon A \to \Reals\).  Então qualquer solução ótima
-  de~\eqref{eq:3} de comprimento mínimo é um caminho e, logo, uma
-  solução ótima para~\eqref{eq:2}.
+  de \eqref{eq:3} de comprimento mínimo é um caminho e, logo, uma
+  solução ótima para \eqref{eq:2}.
 \end{proposition}
 \begin{proof}
   Seja \(W = \seq{v_0,a_1,v_1,\dotsc,a_k,v_k}\) uma solução ótima
-  para~\eqref{eq:2} com número de arcos mínimo.  Se existem
+  para \eqref{eq:2} com número de arcos mínimo.  Se existem
   \(i,j \in \set{0,\dotsc,k}\) tais que \(v_i = v_j\) e \(i < j\),
   então
   \(W' \coloneqq
   \seq{v_0,a_1,v_1,\dotsc,a_i,v_i,a_{j+1},v_{j+1},\dotsc,a_k,v_k}\) é
-  um passeio de~\(r\) para~\(s\) com \(\ell(W') = \ell(W) - \ell(C)\) em que
+  um passeio de \(r\) para \(s\) com \(\ell(W') = \ell(W) - \ell(C)\) em que
   \(C \coloneqq \seq{v_i,a_{i+1},v_{i+1},\dotsc,a_j,v_j}\). Logo,
   \(\ell(W') \leq \ell(W)\) pelo \Cref{ex:3}.  Como \(W\) é solução ótima,
-  \(\ell(W') = \ell(W)\) e \(W'\) tem comprimento menor do que~\(W\), o que
+  \(\ell(W') = \ell(W)\) e \(W'\) tem comprimento menor do que \(W\), o que
   é uma contradição.  Assim, \(W\) é um caminho.  O resultado agora sai
   diretamente do \Cref{ex:2}.
 \end{proof}
@@ -241,7 +241,7 @@ Defina agora a relação binária \(\reaches_D\) em~\(V\) por
 \begin{proposition}
   \label{prop:2}
   Sejam \(D = (V,A)\) um digrafo, \(r,s \in V\) e
-  \(\ell \colon A \to \Reals\).  Suponha que vale~\eqref{eq:4}.
+  \(\ell \colon A \to \Reals\).  Suponha que vale \eqref{eq:4}.
   Então
   \begin{equation}
     \label{eq:6}
@@ -257,8 +257,8 @@ Defina agora a relação binária \(\reaches_D\) em~\(V\) por
 \begin{exercise}
   \label{ex:4}
   Sejam \(D = (V,A)\) um digrafo, let \(r,s \in V\) e
-  \(\ell \colon A \to \Reals\).  Suponha que vale~\eqref{eq:4}.
-  Prove que, se o valor ótimo de~\eqref{eq:4} é finito, então
+  \(\ell \colon A \to \Reals\).  Suponha que vale \eqref{eq:4}.
+  Prove que, se o valor ótimo de \eqref{eq:4} é finito, então
   existe uma solução ótima.
 \end{exercise}
 
@@ -325,7 +325,7 @@ elemento~\(u\) mínimo na ordem~\(\leq\).
   \label{ex:5}
   Sejam \(D = (V,A)\) um digrafo, \(r \in V\) e
   \(\ell \colon A \to \Reals\).  Prove que, para cada
-  \(t \in \Naturals\) e cada \(s \in V\), o~valor ótimo do problema de
+  \(t \in \Naturals\) e cada \(s \in V\), o valor ótimo do problema de
   otimização
   \begin{equation}
     \tag{SWP\({}_t\)}
@@ -341,9 +341,9 @@ elemento~\(u\) mínimo na ordem~\(\leq\).
 É fácil verificar que \(y_t\) pode ser computada em tempo polinomial em
 \(n = \card{V}\) e~\(t\).  Um jeito esperto de fazer isso computacionalmente
 usa programação dinâmica e não é difícil recuperar os passeios ótimos das 
-relações de recorrência em~\eqref{eq:7} e~\eqref{eq:8}.
-Suponha que vale~\eqref{eq:4}.  Pelas~\Cref{prop:1,prop:2}
-e pelo~\Cref{ex:4}, se \(D\) não tem circuitos negativos, então
+relações de recorrência em \eqref{eq:7} e \eqref{eq:8}.
+Suponha que vale~\eqref{eq:4}.  Pelas \Cref{prop:1,prop:2}
+e pelo \Cref{ex:4}, se \(D\) não tem circuitos negativos, então
 \(y_{n-1} = \dist_{(G,\ell)}(r,\cdot)\).  Como podemos detectar/certificar
 se \(D\) tem circuitos negativos e certificar que os passeios que encontramos
 são ótimos?
