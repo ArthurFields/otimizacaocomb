@@ -438,24 +438,24 @@ negative circuit.
   em~\eqref{eq:9} e~\eqref{eq:10}.  Defina
   \(R \coloneqq \setst{v \in V}{r \reaches_D v}\) e
   \(S \coloneqq \setst{v \in V}{v \reaches_D s}\).  Defina
-  \(\bar{y} \coloneqq y_{n-1}\restrict{R \cap S}\), onde
+  \(y^{\star} \coloneqq y_{n-1}\restrict{R \cap S}\), onde
   \(n \coloneqq \card{V}\).  Então vale precisamente uma das
   afirmações abaixo:
   \begin{enumerate}[(i)]
   \item O problema~\eqref{eq:3} é inviável e
-    \(R = \setst{v \in V}{\bar{y}_v < \infty}\) satisfaz \(r \in R\),
+    \(R = \setst{v \in V}{y_v^{\star} < \infty}\) satisfaz \(r \in R\),
     \(s \not\in R\) e \(\deltaout(R) = \emptyset\).
-  \item O problema~\eqref{eq:3} é ilimitado e existe \(v \in V\) tal
+  \item O problema~\eqref{eq:3} é ilimitado e existe \(v \in S\) tal
     que o passeio \(W_n(v) = \seq{v_0,a_1,v_1,\dotsc,a_n,v_n}\) tem
     comprimento~\(n\) e, para quaisquer \(i,j \in \set{0,\dotsc,n}\)
     com \(i < j\) e \(v_i = v_j\), o passeio
     \(W_{ij} \coloneqq \seq{v_i,\dotsc,v_j}\) satisfaz
     \(\ell(W_{ij}) < 0\).
   \item O problema~\eqref{eq:3} tem valor ótimo
-    \(\bar{y}_s \in \Reals\), o caminho
+    \(y_s^{\star} \in \Reals\), o caminho
     \(P^{\star} \coloneqq W_{n-1}(s)\) é solução ótima
-    para~\eqref{eq:3} e~\eqref{eq:2}, e \(\bar{y}\) é um potencial
-    viável tal que \(\ell(P^{\star}) = \bar{y}_s - \bar{y}_r\).
+    para~\eqref{eq:3} e~\eqref{eq:2}, e \(y^{\star}\) é um potencial
+    viável tal que \(\ell(P^{\star}) = y_s^{\star} - y_r^{\star}\).
   \end{enumerate}
 \end{theorem}
 \begin{proof}
