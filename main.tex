@@ -536,6 +536,8 @@ O valor ótimo de~\eqref{eq:12} é denotado por \(\nu_w(G)\).
   \end{equation}
 \end{problem*}
 
+\section{Aula de quinta-feira, 23 de agosto}
+
 Vamos iniciar com o caso \(w = \ones\).  Nesse caso (de
 cardinalidade), esses problemas se traduzem a: encontrar um
 emparelhamento máximo e decidir se o grafo tem algum emparelhamento
@@ -560,6 +562,52 @@ V_M\), dizemos que \(P\) é \emph{\(M\)-aumentador}.
   emparelhamento máximo.
 \end{exercise}
 
+Seja \(G = (V,E,\varphi)\) um grafo sem laços.  Defina
+\begin{equation*}
+  \delta_G(S)
+  \coloneqq
+  \setst{
+    e \in E
+  }{
+    \varphi(e) \cap S \neq \emptyset,\,
+    \varphi(e) \cap \overline{S} \neq \emptyset
+  }
+  \qquad
+  \forall S \subseteq V,
+\end{equation*}
+onde \(\overline{S} \coloneqq V \setminus S\) para todo
+\(S \subseteq V\).  O conjunto \(\delta_G(S)\) é o \emph{corte}
+de~\(G\) com \emph{margem}~\(S\).  Note que, para todo
+\(S \subseteq V\), vale \(\delta_G(S) = \delta_G(\overline{S})\).
+Abreviamos
+\begin{alignat*}{2}
+  \delta_G(v)
+  & \coloneqq
+  \delta_G(\set{v})
+  & \qquad &
+  \forall v \in V,
+  \\
+  \deg_G(v)
+  & \coloneqq
+  \card{\delta_G(v)}
+  & \qquad &
+  \forall v \in V.
+\end{alignat*}
+Denote \(\Delta(G) \coloneqq \max_{v \in V} \deg_G(v)\).
+
+Seja \(G = (V,E,\varphi)\) um grafo.  Dizemos que \(G\) é um
+\emph{caminho} se existe um caminho \(P\) em~\(G\) tal que
+\(G = (V(P),E(P),\varphi\restrict{E(P)})\).  Dizemos que \(G\) é um
+\emph{circuito} se existe um circuito \(C\) em~\(G\) tal que
+\(G = (V(C),E(C),\varphi\restrict{E(C)})\).
+
+\begin{exercise}
+  \label{ex:7}
+  Se \(G\) é um grafo com pelo menos um vértice e
+  \(\Delta(G) \leq 2\), então para cada componente \(K\) de~\(G\),
+  vale que \(G[K]\) é um caminho ou um circuito.
+\end{exercise}
+
 \begin{theorem}[Teorema de Berge]
   Seja \(G = (V,E,\varphi)\) um grafo e \(M \subseteq E\) um
   emparelhamento.  Então \(M\) é emparelhamento máximo \(\iff\) não
@@ -568,26 +616,19 @@ V_M\), dizemos que \(P\) é \emph{\(M\)-aumentador}.
 \begin{proof}
   Necessidade segue imediatamente do \Cref{ex:6}.  Vamos provar a
   conversa da suficiência.  Suponha que \(M\) não é máximo, e seja
-  \(N\) um emparelhamento tal que \(\card{N} > \card{M}\).  Se, para
-  cada componente \(K\) de
+  \(N\) um emparelhamento tal que \(\card{N} > \card{M}\).  Seja \(K\)
+  um componente de
   \(H \coloneqq (V, M \mathbin{\Delta} N, \varphi\restrict{M
-    \mathbin{\Delta} N})\), temos
-  \(\card{N \cap E[K]} \leq \card{M \cap E[K]}\), então
-  \(\card{N} \leq \card{M}\).  Logo, existe um componente \(K\)
-  de~\(H\) tal que \(N' \coloneqq N \cap E[K]\) tem mais arestas que
+    \mathbin{\Delta} N})\).  Pelo \Cref{ex:7} temos que \(G[K]\) é um
+  caminho ou circuito.  Se \(G[K]\) é circuito, é claro que
+  \(\card{M \cap E[K]} = \card{N \cap E[K]}\).  Como
+  \(\card{M} < \card{N}\), pelo menos um componente~\(K\) de~\(H\) é
+  um caminho tal que \(N' \coloneqq N \cap E[K]\) tem mais arestas que
   \(M' \coloneqq M \cap E[K]\).  Seja
-  \(P \coloneqq \seq{v_0,e_1,v_1,\dotsc,e_k,v_k}\) um caminho
-  em~\(H[K]\) de comprimento máximo.  Não é difícil provar que
-  (exercício!):
-  \begin{enumerate}
-  \item \(V(P) = K\) e \(E(P) = H[K]\);
-  \item \(P\) é \(M\)- e \(N\)-alternante;
-  \item \(v_1,\dotsc,v_{k-1} \in V_{M'} \cap V_{N'}\).
-  \end{enumerate}
-  Como
-  \(\card{V_{N'}} > \card{V_{M'}}\) e ambos esses números são pares,
-  segue que \(v_0,v_k \in V_{N'} \setminus V_{M'} \subseteq V_N
-  \setminus V_M\) e portanto \(P\) é um caminho \(M\)-aumentador.
+  \(P = \seq{v_0,e_1,v_1,\dotsc,e_k,v_k}\) um caminho em~\(G[K]\) tal
+  que \(V(P) = K\).  É claro que \(P\) é \(M\)-alternante e que
+  \(v_0, v_k \not\in V_M\); caso contrário teríamos
+  \(\card{M'} \geq \card{N'}\).  Logo, \(P\) é \(M\)-aumentador.
 \end{proof}
 
 Note que o teorema acima não fornece um certificado de otimalidade de
@@ -643,39 +684,6 @@ Seja \(G = (V,E,\varphi)\) um grafo \((U,W)\)-bipartido.  Seja
   \(\iff\) \(P\) é um caminho em \(D_M\) de \(U \setminus V_M\) a
   \(V \setminus V_M\).
 \end{exercise}
-
-% Seja \(G = (V,E,\varphi)\) um grafo sem laços.  Defina
-% \begin{equation*}
-%   \delta_G(S)
-%   \coloneqq
-%   \setst{
-%     e \in E
-%   }{
-%     \varphi(e) \cap S \neq \emptyset,\,
-%     \varphi(e) \cap \overline{S} \neq \emptyset
-%   }
-%   \qquad
-%   \forall S \subseteq V,
-% \end{equation*}
-% onde \(\overline{S} \coloneqq V \setminus S\) para todo
-% \(S \subseteq V\).  O conjunto \(\delta_G(S)\) é o \emph{corte}
-% de~\(G\) com \emph{margem}~\(S\).  Note que, para todo
-% \(S \subseteq V\), vale \(\delta_G(S) = \delta_G(\overline{S})\).
-% Abreviamos
-% \begin{alignat*}{2}
-%   \delta_G(v)
-%   & \coloneqq
-%   \delta_G(\set{v})
-%   & \qquad &
-%   \forall v \in V,
-%   \\
-%   \deg_G(v)
-%   & \coloneqq
-%   \card{\delta_G(v)}
-%   & \qquad &
-%   \forall v \in V.
-% \end{alignat*}
-% Denote \(\Delta(G) \coloneqq \max_{v \in V} \deg_G(v)\).
 
 % Sejam \(G = (V,E)\) e \(H = (W,F)\) grafos.  Um \emph{homomorfismo}
 % de~\(G\) para~\(H\) é uma função \(\pi \colon V \to W\) tal que, para
