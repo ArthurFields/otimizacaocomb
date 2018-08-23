@@ -57,11 +57,10 @@
 
 \section{Aula de terça-feira, 7 de agosto}
 
-Um \emph{problema de otimização} é um par ordenado \((X,f)\) onde
-\(X\) é um conjunto, chamado \emph{conjunto viável} ou \emph{região
-  viável}, e \(f \colon X \to \Reals\) é uma função, chamada
-\emph{função objetivo}.  Mais comumente, nos referimos ao problema de
-otimização \((X,f)\) como o problema:
+Um \emph{problema de otimização} é um par ordenado \((X,f)\) em que~\(X\) é um
+conjunto, chamado \emph{conjunto viável} ou \emph{região viável}, e
+\(f \colon X \to \Reals\) é uma função, chamada \emph{função objetivo}. Mais
+comumente, nos referimos ao problema de otimização \((X,f)\) como o problema:
 \begin{equation}
   \label{eq:1}
   \tag{OPT}
@@ -70,13 +69,13 @@ otimização \((X,f)\) como o problema:
     \text{sujeito a} & x \in X. \\
   \end{array}
 \end{equation}
-Cada elemento de \(X\) é uma \emph{solução viável} de \eqref{eq:1} e
-seu \emph{valor objetivo} é \(f(x)\).  O \emph{valor ótimo}
-de \eqref{eq:1} é \(\inf_{x \in X}f(x) \in [-\infty,+\infty]\).  O
-problema é \emph{inviável} se \(X = \emptyset\).  Note que o valor
+Cada elemento de~\(X\) é uma \emph{solução viável} de~\eqref{eq:1} e
+seu \emph{valor objetivo} é~\(f(x)\).  O \emph{valor ótimo}
+de~\eqref{eq:1} é \(\inf_{x \in X}f(x) \in [-\infty,+\infty]\).  O
+problema é \emph{inviável} se \(X = \emptyset\). Note que o valor
 ótimo de um problema é \(+\infty\) se, e somente se, o problema é
-inviável.  Se o valor ótimo é \(-\infty\), o problema é
-\emph{ilimitado}.  Uma \emph{solução ótima} é uma solução viável cujo
+inviável. Se o valor ótimo é \(-\infty\), o problema é
+\emph{ilimitado}. Uma \emph{solução ótima} é uma solução viável cujo
 valor objetivo é o valor ótimo do problema; equivalentemente,
 \(x^{\star} \in X\) é solução ótima se, e somente se, para todo
 \(x \in X\), vale que \(f(x^{\star}) \leq f(x)\).
@@ -100,7 +99,7 @@ Resolver um problema de otimização significa:
     \tag{SPP}
     \begin{array}{{rl}}
       \text{Minimizar} & \ell(P) \\
-      \text{sujeito a} & \text{\(P\) é um caminho de \(r\) a \(s\) em~\(D\)}.
+      \text{sujeito a} & \text{\(P\) é um caminho de~\(r\) a~\(s\) em~\(D\)}.
     \end{array}
   \end{equation}
 \end{problem*}
@@ -122,15 +121,15 @@ Resolver um problema de otimização significa:
   Sejam \((X,f)\) e \((Y,g)\) problemas de otimização.  Um
   \emph{homomorfismo} de \((X,f)\) a \((Y,g)\) é uma função
   \(\psi \colon X \to Y\) tal que \(g(\psi(x)) \leq f(x)\) para todo
-  \(x \in X\).  Se existe um homomorfismo de \((X,f)\) a
-  \((Y,g)\), escrevemos \((X,f) \to (Y,g)\).  Os problemas \((X,f)\) e
+  \(x \in X\). Se existe um homomorfismo de \((X,f)\) a
+  \((Y,g)\), escrevemos \((X,f) \to (Y,g)\). Os problemas \((X,f)\) e
   \((Y,g)\) são \emph{equivalentes} se \((X,f) \to (Y,g)\) e
   \((Y,g) \to (X,f)\).
 \end{definition*}
 
 \begin{exercise}
   \label{ex:1}
-  Prove que tanto o problema \eqref{eq:1} quanto \eqref{eq:2} são     
+  Prove que tanto o problema \eqref{eq:1} quanto \eqref{eq:2} são
   ao mesmo problema aplicado ao subdigrafo induzido \(D[V_{rs}]\)
   em que
   \(V_{rs} \coloneqq \setst{v \in V}{r \reaches_D v \text{ e }v
@@ -150,21 +149,21 @@ Resolver um problema de otimização significa:
   \label{eq:4}
   \text{para cada \(v \in V\), temos \(r \reaches_D v \reaches_D s\).}
 \end{equation}
-Também é óbvio como reduzir qualquer instância de ambos os problemas para 
+Também é óbvio como reduzir qualquer instância de ambos os problemas para
 uma em que o digrafo seja simples.
 
 \begin{exercise}
   \label{ex:2}
   Sejam \(D = (V,A)\) um digrafo, \(r,s \in V\) e
   \(\ell \colon A \to \Reals\).  Prove que, se uma determinada solução
-  ótima \(W^\star\) para \eqref{eq:2} é um caminho, então \(W^\star\) é uma
-  solução ótima para \eqref{eq:1}.
+  ótima \(W^\star\) para \eqref{eq:2} é um caminho, então \(W^\star\) é uma
+  solução ótima para \eqref{eq:1}.
 \end{exercise}
 
 \begin{exercise}
   \label{ex:3}
   Sejam \(D = (V,A)\) um digrafo, \(r,s \in V\) e
-  \(\ell \colon A \to \Reals\).  Se
+  \(\ell \colon A \to \Reals\). Se
   \(\seq{v_0,a_1,v_1,\dotsc,a_k,v_k}\) é uma solução ótima
   para \eqref{eq:2} e \(v_i = v_j\) para alguns
   \(i,j \in \set{0,\dotsc,k}\) tais que \(i < j\), então
@@ -175,45 +174,33 @@ uma em que o digrafo seja simples.
 \begin{proposition}
   \label{prop:1}
   Sejam \(D = (V,A)\) um digrafo, \(r,s \in V\) e
-  \(\ell \colon A \to \Reals\).  Então qualquer solução ótima
-  de \eqref{eq:3} de comprimento mínimo é um caminho e, logo, uma
-  solução ótima para \eqref{eq:2}.
+  \(\ell \colon A \to \Reals\). Então qualquer solução ótima
+  de~\eqref{eq:3} de comprimento mínimo é um caminho e, logo, uma
+  solução ótima para \eqref{eq:2}.
 \end{proposition}
 \begin{proof}
   Seja \(W = \seq{v_0,a_1,v_1,\dotsc,a_k,v_k}\) uma solução ótima
-  para \eqref{eq:2} com número de arcos mínimo.  Se existem
+  para~\eqref{eq:2} com número de arcos mínimo. Se existem
   \(i,j \in \set{0,\dotsc,k}\) tais que \(v_i = v_j\) e \(i < j\),
-  então
-  \(W' \coloneqq
+  então \(W' \coloneqq
   \seq{v_0,a_1,v_1,\dotsc,a_i,v_i,a_{j+1},v_{j+1},\dotsc,a_k,v_k}\) é
-  um passeio de \(r\) para \(s\) com \(\ell(W') = \ell(W) - \ell(C)\) em que
+  um passeio de~\(r\) para~\(s\) com \(\ell(W') = \ell(W) - \ell(C)\) em que
   \(C \coloneqq \seq{v_i,a_{i+1},v_{i+1},\dotsc,a_j,v_j}\). Logo,
-  \(\ell(W') \leq \ell(W)\) pelo \Cref{ex:3}.  Como \(W\) é solução ótima,
-  \(\ell(W') = \ell(W)\) e \(W'\) tem comprimento menor do que \(W\), o que
-  é uma contradição.  Assim, \(W\) é um caminho.  O resultado agora sai
-  diretamente do \Cref{ex:2}.
+  \(\ell(W') \leq \ell(W)\) pelo~\Cref{ex:3}.  Como~\(W\) é solução ótima,
+  \(\ell(W') = \ell(W)\) e~\(W'\) tem comprimento menor do que~\(W\), o que
+  é uma contradição. Assim, \(W\) é um caminho.  O resultado agora sai
+  diretamente do~\Cref{ex:2}.
 \end{proof}
 
 Seja \(D = (V,A,\varphi)\) um digrafo.  Defina:
 \begin{alignat*}{2}
   \label{eq:5}
-  \deltaout[D](S)
-  & \coloneqq
-  \setst{
-    a \in A
-  }{
-    \varphi(a) = uv,\,
-    u \in S,\,
-    v \not\in S
-  }
-  & \qquad &
-  \forall S \subseteq V,
+  \deltaout[D](S) & \coloneqq
+  \setst{ a \in A }{ \varphi(a) = uv,\, u \in S,\, v \not\in S}
+  & \qquad & \forall S \subseteq V,
   \\
-  \deltain[D](S)
-  & \coloneqq
-  \deltaout[D](V \setminus S)
-  & \qquad &
-  \forall S \subseteq V.
+  \deltain[D](S) & \coloneqq \deltaout[D](V \setminus S)
+  & \qquad & \forall S \subseteq V.
 \end{alignat*}
 Defina agora a relação binária \(\reaches_D\) em~\(V\) por
 \begin{equation*}
@@ -228,13 +215,14 @@ Defina agora a relação binária \(\reaches_D\) em~\(V\) por
   \(r \in R\), \(s \not\in R\) e \(\deltaout[D](R) = \emptyset\).
 \end{theorem}
 \begin{proof}
-(\(\Leftarrow\)) Trivial.
-\\ (\(\Rightarrow\)) Defina \(R \coloneqq \setst{v \in V}{r \reaches_D v}\).
-   Note que \(r \in R\) e \(s \notin R\). Se \(\deltaout[D](R) \neq \emptyset\), 
-   então existe \(v \in \deltaout[D](R)\). Assim, existe \(u \in R\) tal que
-   \(\varphi(v) = uv\). Dessa forma, se \(W = \seq{r,a_1,v_1,\dotsc,a_k,u}\) 
-   é um caminho de \(r\) a \(u\), então \(\seq{r,a_1,v_1,\dotsc,a_k,u,uv,v}\)
-   é um caminho de \(r\) a \(v\). Contradição.
+  (\(\Leftarrow\)) Trivial.
+  \\
+  (\(\Rightarrow\)) Defina \(R \coloneqq \setst{v \in V}{r \reaches_D v}\).
+  Note que \(r \in R\) e \(s \notin R\). Se \(\deltaout[D](R) \neq \emptyset\),
+  então existe \(v \in \deltaout[D](R)\). Assim, existe \(u \in R\) tal que
+  \(\varphi(v) = uv\). Dessa forma, se \(W = \seq{r,a_1,v_1,\dotsc,a_k,u}\)
+  é um caminho de~\(r\) a~\(u\), então \(\seq{r,a_1,v_1,\dotsc,a_k,u,uv,v}\)
+  é um caminho de~\(r\) a~\(v\). Contradição.
 \end{proof}
 
 \section{Aula de quinta-feira, 16 de agosto}
@@ -242,7 +230,7 @@ Defina agora a relação binária \(\reaches_D\) em~\(V\) por
 \begin{proposition}
   \label{prop:2}
   Sejam \(D = (V,A)\) um digrafo, \(r,s \in V\) e
-  \(\ell \colon A \to \Reals\).  Suponha que vale \eqref{eq:4}.
+  \(\ell \colon A \to \Reals\). Suponha que vale~\eqref{eq:4}.
   Então
   \begin{equation}
     \label{eq:6}
@@ -257,19 +245,18 @@ Defina agora a relação binária \(\reaches_D\) em~\(V\) por
 
 \begin{exercise}
   \label{ex:4}
-  Sejam \(D = (V,A)\) um digrafo, let \(r,s \in V\) e
-  \(\ell \colon A \to \Reals\).  Suponha que vale \eqref{eq:4}.
-  Prove que, se o valor ótimo de \eqref{eq:4} é finito, então
+  Sejam \(D = (V,A)\) um digrafo, \(r,s \in V\) e
+  \(\ell \colon A \to \Reals\).  Suponha que vale~\eqref{eq:4}.
+  Prove que, se o valor ótimo de~\eqref{eq:4} é finito, então
   existe uma solução ótima.
 \end{exercise}
 
 Sejam \(D = (V,A)\) um digrafo, \(r \in V\) e
-\(\ell \colon A \to \Reals\).  Para cada \(t \in \Naturals\), defina
+\(\ell \colon A \to \Reals\). Para cada \(t \in \Naturals\), defina
 \(y_t \colon V \to \Reals \cup \set{\infty}\) como
 \begin{equation}
   \label{eq:7}
-  y_0(v)
-  \coloneqq
+  y_0(v) \coloneqq
   \begin{cases*}
     0       & se \(v = r\),   \\
     +\infty & caso contrário, \\
@@ -278,24 +265,14 @@ Sejam \(D = (V,A)\) um digrafo, \(r \in V\) e
 e
 \begin{equation}
   \label{eq:8}
-  y_{t+1}(v)
-  \coloneqq
-  \min\paren[\big]{
-    \set{y_t(v)}
-    \cup
-    \setst{
-      y_t(u) + \ell(uv)
-    }{
-      uv \in A
-    }}
-  \qquad
-  \forall t \in \Naturals.
+  y_{t+1}(v) \coloneqq
+  \min\paren[\big]{ \set{y_t(v)} \cup \setst{ y_t(u) + \ell(uv)}{ uv \in A }}
+  \qquad \forall t \in \Naturals.
 \end{equation}
 Para cada \(t \in \Naturals\) e \(v \in V\), sejam
 \begin{equation}
   \label{eq:9}
-  W_0(v)
-  \coloneqq
+  W_0(v) \coloneqq
   \begin{cases*}
     \seq{r} & se \(v = r\),   \\
     \bot    & caso contrário, \\
@@ -304,8 +281,7 @@ Para cada \(t \in \Naturals\) e \(v \in V\), sejam
 e
 \begin{equation}
   \label{eq:10}
-  W_{t+1}(v)
-  \coloneqq
+  W_{t+1}(v) \coloneqq
   \begin{cases*}
     \seq{z_0,\dotsc,a_k,z_k,uv,v} & se \(y_t(u) + \ell(uv) =
     y_{t+1}(v) < y_t(v)\) e \(W_t(u) = \seq{z_0,\dotsc,a_k,z_k}\), \\
@@ -316,7 +292,7 @@ e
 \end{equation}
 Note que \(y_t\) está definido inambiguamente para todo
 \(t \in \Naturals\), enquanto os passeios \(W_t(v)\) não são definidos
-de forma única.  Uma possibilidade para que esses passeios estejam
+de forma única. Uma possibilidade para que esses passeios estejam
 unicamente definidos é criar uma ordem total arbitrária~\(\leq\)
 sobre~\(V\) e, em caso de vários arcos \(uv\) tais que
 \(y_{t+1}(v) = y_t(u) + \ell(uv)\), podemos sempre escolher o
@@ -325,38 +301,36 @@ elemento~\(u\) mínimo na ordem~\(\leq\).
 \begin{exercise}
   \label{ex:5}
   Sejam \(D = (V,A)\) um digrafo, \(r \in V\) e
-  \(\ell \colon A \to \Reals\).  Prove que, para cada
-  \(t \in \Naturals\) e cada \(s \in V\), o valor ótimo do problema de
+  \(\ell \colon A \to \Reals\). Prove que, para cada
+  \(t \in \Naturals\) e cada \(s \in V\), o valor ótimo do problema de
   otimização
   \begin{equation}
     \tag{SWP\({}_t\)}
     \begin{array}{{rl}}
       \text{Minimizar}   & \ell(P) \\
-      \text{sujeito a} & \text{\(P\) é um passeio de \(r\) a \(s\) em~\(D\) de comprimento \(\leq t\)} \\
+      \text{sujeito a} & \text{\(P\) é um passeio de~\(r\) a~\(s\) em~\(D\) de comprimento \(\leq t\)} \\
     \end{array}
   \end{equation}
   é \(y_t(s)\) e \(W_t(s)\) é uma solução ótima se
   \(y_t(s) < \infty\).
 \end{exercise}
 
-É fácil verificar que \(y_t\) pode ser computada em tempo polinomial em
-\(n = \card{V}\) e~\(t\).  Um jeito esperto de fazer isso computacionalmente
-usa programação dinâmica e não é difícil recuperar os passeios ótimos das 
-relações de recorrência em \eqref{eq:7} e \eqref{eq:8}.
-Suponha que vale~\eqref{eq:4}.  Pelas \Cref{prop:1,prop:2}
-e pelo \Cref{ex:4}, se \(D\) não tem circuitos negativos, então
-\(y_{n-1} = \dist_{(G,\ell)}(r,\cdot)\).  Como podemos detectar/certificar
+É fácil verificar que~\(y_t\) pode ser computada em tempo polinomial em
+\(n = \card{V}\) e~\(t\). Um jeito esperto de fazer isso computacionalmente
+usa programação dinâmica e não é difícil recuperar os passeios ótimos das
+relações de recorrência em~\eqref{eq:7} e~\eqref{eq:8}.
+Suponha que vale~\eqref{eq:4}. Pelas~\Cref{prop:1,prop:2}
+e pelo~\Cref{ex:4}, se \(D\) não tem circuitos negativos, então
+\(y_{n-1} = \dist_{(G,\ell)}(r,\cdot)\). Como podemos detectar/certificar
 se \(D\) tem circuitos negativos e certificar que os passeios que encontramos
 são ótimos?
 
 Sejam \(D = (V,A)\) um digrafo e \(\ell \colon A \to \Reals\).
 Temporariamente, vamos chamar uma função
-\(y \colon V \to \Reals \cup \set{\infty}\) de \emph{potencial}.  Um
+\(y \colon V \to \Reals \cup \set{\infty}\) de \emph{potencial}. Um
 potencial é \emph{viável} se
 \begin{equation*}
-  y(v) \leq y(u) + \ell(uv)
-  \qquad
-  \forall uv \in A.
+  y(v) \leq y(u) + \ell(uv) \qquad \forall uv \in A.
 \end{equation*}
 If \(y\) is a feasible potential and \(y(r) < \infty\), then for every
 \(v \in V\), we have \(r \reaches_D v \implies y(v) < \infty\).  So
