@@ -222,6 +222,7 @@ Defina agora a relação binária \(\reaches_D\) em~\(V\) por
 \end{equation*}
 
 \begin{theorem}
+  \label{thm:1}
   Sejam \(D = (V,A)\) um digrafo e \(r,s \in V\).  Então
   \(r \not\reaches_D s \iff\) existe \(R \subseteq V\) tal que
   \(r \in R\), \(s \not\in R\) e \(\deltaout[D](R) = \emptyset\).
@@ -363,7 +364,7 @@ there is very little loss of generality when assume that a feasible
 potential is finite everywhere.
 
 \begin{theorem}
-  \label{thm:1}
+  \label{thm:2}
   Let \(D = (V,A)\) be a digraph, let \(r,s \in V\), and let
   \(\ell \colon A \to \Reals\).  If \(y \colon V \to \Reals\) is a
   feasible potential, then
@@ -400,7 +401,7 @@ potential is finite everywhere.
 \end{corollary}
 \begin{proof}
   Let \(C\) be a circuit in~\(D\) from \(r\) to \(s = r\).  Then
-  \(\ell(C) \geq y(s) - y(r) = 0\) by \Cref{thm:1}.
+  \(\ell(C) \geq y(s) - y(r) = 0\) by \Cref{thm:2}.
 \end{proof}
 
 \begin{corollary}
@@ -659,8 +660,12 @@ são disjuntos e estáveis e vale que \(U \cup W = V\), dizemos que
 
 Seja \(G = (V,E,\varphi)\) um grafo \((U,W)\)-bipartido.  Seja
 \(M \subseteq E\) um emparelhamento e tome
-\(\overline{M} \coloneqq E \setminus M\).  Defina o digrafo
-\(D_M \coloneqq (V,E,\psi)\) onde
+\(\overline{M} \coloneqq E \setminus M\).  Defina a orientação
+\begin{equation}
+  \label{eq:14}
+  D_M \coloneqq (V,E,\psi)
+\end{equation}
+de~\(G\), onde
 \begin{equation*}
   \psi(e)
   \coloneqq
@@ -682,8 +687,94 @@ Seja \(G = (V,E,\varphi)\) um grafo \((U,W)\)-bipartido.  Seja
   \(M \subseteq E\) um emparelhamento.  Seja \(P\) um caminho em~\(G\)
   com início em \(u \in U\).  Prove que \(P\) é \(M\)-aumentador
   \(\iff\) \(P\) é um caminho em \(D_M\) de \(U \setminus V_M\) a
-  \(V \setminus V_M\).
+  \(W \setminus V_M\).
 \end{exercise}
+
+Seja \(G = (V,E,\varphi)\) um grafo.  Dizemos que \(K \subseteq V\) é
+uma \emph{cobertura por vértices} se
+\(G - K \coloneqq G[V\setminus K]\) não tem arestas.
+
+\begin{proposition}
+  Sejam \(G = (V,E,\varphi)\) um grafo, \(K \subseteq V\) uma
+  cobertura por vértices e \(M \subseteq E\) um emparelhamento.  Então
+  \(\card{M} \leq \card{K}\).
+\end{proposition}
+
+\begin{theorem}
+  Sejam \(G = (V,E,\varphi)\) um grafo \((U,W)\)-bipartido e
+  \(M \subseteq E\) um emparelhamento.  Seja
+  \(D \coloneqq D_M = (V,E,\psi)\) o digrafo definido como
+  em~\eqref{eq:14}.  Defina
+  \(R \coloneqq \setst{v \in V}{\text{existe \(u \in U \setminus V_M\)
+      tal que }u \reaches_D v}\).  Se
+  \(R \subseteq V \setminus (W \setminus V_M)\), então
+  \(K \coloneqq (U \setminus R) \cup (W \cap R)\) é uma cobertura por
+  vértices e \(\card{K} \leq \card{M}\).
+\end{theorem}
+\begin{proof}
+  Primeiro vamos provar que
+  \begin{equation}
+    \label{eq:15}
+    \text{\(K\) é uma cobertura por vértices.}
+  \end{equation}
+  Suponha que \(G - K\) tem alguma aresta \(e\) com pontas \(u \in U\)
+  e \(w \in W\).  Então \(u \in U \cap R\) e \(w \in W \setminus R\).
+  Claramente \(\deltaout(R) = \emptyset\), então \(\psi(e) = wu\).
+  Como \(u \in R \cap V_M\), existe um caminho
+  \(P = \seq{v_0,a_1,v_1,\dotsc, a_k,v_k}\) em~\(D\) com \(v_k = u\) e
+  \(k \geq 1\).  Mas \(\deltain(u) = \set{e}\), portanto
+  \(v_{k-1} = w\) e então \(w \in R\), uma contradição.  Isso conclui
+  a prova de~\eqref{eq:15}.
+
+  Para provar que \(\card{K} \leq \card{M}\), vamos construir uma
+  injeção \(\pi \colon K \to M\).
+
+  Seja \(u \in U \setminus R\).  Como \(U \setminus V_M \subseteq R\),
+  temos \(u \in V_M\) e portanto existe \(e \in M\) tal que
+  \(\varphi(e) = uw\) para algum \(w \in W\).  Tome
+  \(\pi(u) \coloneqq e\).  Note que \(w \in W \setminus R\), pois caso
+  \(w \in W \cap R\), temos \(e \in \deltaout(R)\).  Logo,
+  \begin{equation}
+    \label{eq:16}
+    \forall v \in U \setminus R,
+    \qquad
+    \varphi(f(v)) \subseteq V \setminus R.
+  \end{equation}
+
+  Seja \(w \in W \cap R\).  Como
+  \(R \subseteq V \setminus (W \setminus V_M)\), temos \(w \in V_M\).
+  Seja \(e \in M\) tal que \(\varphi(e) = uw\) para algum \(u \in U\).
+  Tome \(\pi(w) \coloneqq e\).  Note que \(u \in U \cap R\), pois
+  \(\psi(e) = wu\) e \(w \in R\).  Logo,
+  \begin{equation}
+    \label{eq:17}
+    \forall v \in W \cap R,
+    \qquad
+    \varphi(f(v)) \subseteq R.
+  \end{equation}
+  Como \(M\) é emparelhamento, é evidente que
+  \(\pi\restrict{U \setminus R}\) e \(\pi\restrict{W \cap R}\) são
+  injetoras.  Combinando esta afirmação com~\eqref{eq:16}
+  e~\eqref{eq:17}, concluímos que \(pi\) é injetora.
+\end{proof}
+
+\begin{corollary}[Teorema de emparelhamentos de Kőnig]
+  Seja \(G\) um grafo bipartido.  Então
+  \begin{equation}
+    \label{eq:18}
+    \max\setst{
+      \card{M}
+    }{
+      \text{\(M\) um emparelhamento em \(G\)}
+    }
+    =
+    \min\setst{
+      \card{K}
+    }{
+      \text{\(K\) uma cobertura por vértices em \(G\)}
+    }.
+  \end{equation}
+\end{corollary}
 
 % Sejam \(G = (V,E)\) e \(H = (W,F)\) grafos.  Um \emph{homomorfismo}
 % de~\(G\) para~\(H\) é uma função \(\pi \colon V \to W\) tal que, para
